@@ -13,14 +13,17 @@
   </head>
 
   <body>
+    <div class="container">
+
     <!-- NAVBAR -->
-    <div class="container-fluid nav">
-      <div class="row fixed-top new-list-box">
-        <button type="button" class="btn-sm btn-outline-secondary list-button float-right ml-auto new-list-button">NEW LIST</button>
-        <button type="button" class="btn-sm btn-outline-secondary list-button float-right new-list-button">LOG OUT</button>
+    <div class="row fixed-top new-list-box">
+      <div class="col-md-12 new-list-spacer">
+        <%= button_to('LOGOUT', new_list_path, :type => 'button', :class => 'btn-sm btn-outline-secondary new-list-button float-right', :method => 'get')%>
+        <%= button_to('NEW LIST', new_list_path, :type => 'button', :class => 'btn-sm btn-outline-secondary new-list-button float-right', :method => 'get')%>
       </div>
     </div>
     <!--END NAVBAR-->
     <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,0 +1,28 @@
+<%= form_for @list do |f| %>
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+    <div class="col-md-4 task-box">
+
+      <!-- Edit Title-->
+      <div class="row list-title-box">
+        <span class="list-title">
+          <%= f.text_field :title, class: "list-title-edit", value: "Enter Title..." %>
+        </span>
+      </div>
+
+      <!-- Edit Due Date -->
+      <div class="row due-box">
+        <span class="due-date">Due:
+          <%= f.text_field :due_date %>
+        </span>
+      </div>
+
+      <!--Edit tasks-->
+      
+
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+<% end %>
