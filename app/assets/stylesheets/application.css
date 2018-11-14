@@ -20,6 +20,20 @@
    color: #bcbec0;
  }
 
+ .due-box {
+    background-color: #58ce96;
+  }
+
+  .due-date {
+    color: white;
+    padding-left: 20px;
+    padding-bottom: 12px;
+    margin-top: -12px;
+    font-size: .8em;
+    font-weight: bold;
+    display: block;
+  }
+
  .headline {
    font-size: 3em;
    font-weight: bold;
@@ -40,7 +54,7 @@
  }
 
  .list-title-box {
-   background-color: #238dca;
+   background-color: #58ce96;
    border-top-left-radius: 10px;
    border-top-right-radius: 10px;
  }
