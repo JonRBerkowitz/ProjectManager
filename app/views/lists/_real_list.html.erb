@@ -1,0 +1,46 @@
+<div class="container">
+
+  <!--Begin Task Row-->
+  <div class="row">
+    <% @lists.each do |list| %>
+    <!-- Begin Task List-->
+    <div class="col-md-4 task-box">
+
+      <!--Task List Header-->
+      <div class="row list-title-box">
+        <span class="list-title"><%= list.title %></span>
+      </div>
+
+      <div class="row due-box">
+        <span class="due-date">Due: <%= list.due_date.strftime("%b. %d, %Y") %></span>
+      </div>
+
+      <!--Task List Content-->
+      <div class="row list-tasks">
+        <% if list.tasks %>
+        <ul>
+          <% list.tasks.each_with_index do |task, i| %>
+          <% if i.even? %>
+            <li><%= task.name %></li>
+            <% else %>
+            <li class="lg"><%= task.name %></li>
+            <% end %>
+          <% end %>
+        <% end %>
+        </ul>
+      </div>
+
+      <!--Task List Footer-->
+      <div class="row list-footer-box">
+        <button type="button" class="btn-sm btn-outline-secondary list-button float-right ml-auto">EDIT</button>
+        <button type="button" class="btn-sm btn-outline-secondary list-button float-right">DELETE</button>
+
+      </div>
+
+    </div>
+    <!--End Task List-->
+<% end %>
+  </div>
+  <!--End Task Row-->
+
+</div>

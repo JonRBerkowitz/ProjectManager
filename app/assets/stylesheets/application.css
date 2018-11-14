@@ -79,13 +79,15 @@
    list-style-type: none;
    padding: 8px 0 8px 20px;
    width: 100%;
-   border-left: 1px solid #e6e7e8;
-   border-right: 1px solid #e6e7e8;
   }
 
  .list-tasks ul {
    width: 100%;
    padding-left: 0;
+   margin-bottom: 0;
+   height: auto;
+   border-left: 1px solid #e6e7e8;
+   border-right: 1px solid #e6e7e8;
   }
 
   .lg {
