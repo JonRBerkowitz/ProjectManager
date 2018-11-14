@@ -18,8 +18,8 @@
     <!-- NAVBAR -->
     <div class="row fixed-top new-list-box">
       <div class="col-md-12 new-list-spacer">
-        <%= button_to('LOGOUT', new_list_path, :type => 'button', :class => 'btn-sm btn-outline-secondary new-list-button float-right', :method => 'get')%>
-        <%= button_to('NEW LIST', new_list_path, :type => 'button', :class => 'btn-sm btn-outline-secondary new-list-button float-right', :method => 'get')%>
+        <%= button_to('LOGOUT', new_user_list_path(@user), :type => 'button', :class => 'btn-sm btn-outline-secondary new-list-button float-right', :method => 'get')%>
+        <%= button_to('NEW LIST', new_user_list_path(@user), :type => 'button', :class => 'btn-sm btn-outline-secondary new-list-button float-right', :method => 'get')%>
       </div>
     </div>
     <!--END NAVBAR-->
