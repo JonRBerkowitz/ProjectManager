@@ -38,6 +38,7 @@
    font-size: 3em;
    font-weight: bold;
    padding: 30px 0;
+   width: 100%;
  }
 
  .list-button {
@@ -93,6 +94,20 @@
   .lg {
    background-color: #d1d3d4;
   }
+
+  .nav {
+    margin-bottom: 45px;
+  }
+
+  .new-list-box {
+    background-color: #e6e7e8;
+    border-top: 1px solid #e6e7e8;
+  }
+
+  .new-list-button {
+    margin-right: 40px;
+    margin-left: -20px;
+ }
 
   .task-box {
     padding: 0 30px 30px 30px;
