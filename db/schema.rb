@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(version: 2018_11_09_191839) do
     t.string "name"
     t.text "description"
     t.datetime "due_date"
+    t.boolean "done", default: false
     t.integer "list_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
