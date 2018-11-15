@@ -6,5 +6,5 @@ Rails.application.routes.draw do
     resources :lists
   end
   resources :lists, only: [:edit]
-  resources :tasks, only: [:destroy]
+  resources :tasks, only: [:destroy, :edit, :update]
 end
