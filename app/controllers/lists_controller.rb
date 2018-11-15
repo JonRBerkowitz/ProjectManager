@@ -25,6 +25,17 @@ before_action :current_user
   def edit
     @user = current_user
     @list = List.find(params[:id])
+    @list.tasks.build
+  end
+
+  def update
+    @list = List.find(params[:id])
+    @user = current_user
+    if @list.update(list_params)
+      redirect_to user_lists_path
+    else
+      render :edit
+    end
   end
 
   def destroy
@@ -36,7 +47,7 @@ before_action :current_user
   private
 
   def list_params
-    params.require(:list).permit(:title, :due_date, :sub_type, user_ids:[], tasks_attributes: [:name, :done])
+    params.require(:list).permit(:title, :due_date, :sub_type, user_ids:[], tasks_attributes: [:id, :name, :done])
   end
 
 end
