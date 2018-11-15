@@ -15,8 +15,14 @@ before_action :current_user
   def create
     @user = current_user
     @list = List.new(list_params)
+
       if @list.save
+        if params[:task_field] == "ADD TASK"
+          flash[:redirect] = "ADD"
+          redirect_to edit_user_list_path(@user, @list)
+        else
           redirect_to user_lists_path
+        end
       else
         render :new
       end
@@ -25,14 +31,21 @@ before_action :current_user
   def edit
     @user = current_user
     @list = List.find(params[:id])
-    @list.tasks.build
+    if flash[:redirect] == "ADD"
+      @list.tasks.build
+    end
   end
 
   def update
     @list = List.find(params[:id])
     @user = current_user
     if @list.update(list_params)
-      redirect_to user_lists_path
+      if params[:task_field] == "ADD TASK"
+        flash[:redirect] = "ADD"
+        redirect_to edit_user_list_path(@user, @list)
+      else
+        redirect_to user_lists_path
+      end
     else
       render :edit
     end
@@ -42,6 +55,14 @@ before_action :current_user
     @list = List.find(params[:id])
     @list.destroy
     redirect_to user_lists_path
+  end
+
+
+  def add_task
+    @list = List.find(params[:id])
+    @user = current_user
+    @list.tasks.build
+    render :new
   end
 
   private

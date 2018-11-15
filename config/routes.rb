@@ -5,6 +5,5 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :create, :index, :destroy] do
     resources :lists
   end
-
   resources :lists, only: [:edit]
 end
