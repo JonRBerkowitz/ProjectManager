@@ -16,7 +16,7 @@ before_action :current_user
     @user = current_user
     @list = List.new(list_params)
       if @list.save
-          redirect_to edit_user_list_path(@user, @list)
+          redirect_to user_lists_path
       else
         render :new
       end
@@ -25,6 +25,12 @@ before_action :current_user
   def edit
     @user = current_user
     @list = List.find(params[:id])
+  end
+
+  def destroy
+    @list = List.find(params[:id])
+    @list.destroy
+    redirect_to user_lists_path
   end
 
   private

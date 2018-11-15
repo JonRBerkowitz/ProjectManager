@@ -31,8 +31,8 @@
 
       <!--Task List Footer-->
       <div class="row list-footer-box">
-        <button type="button" class="btn-sm btn-outline-secondary list-button float-right ml-auto" method="post" name="sub_type" value="add_task">ADD TASK</button>
-        <button type="submit" class="btn-sm btn-outline-secondary list-button float-right" method="post" name="sub_type" value="normal">SAVE</button>
+        <%= button_to "EDIT", edit_user_list_path(@user, list), class:'btn-sm btn-outline-secondary list-button', method:'get' %>
+        <%= button_to "DELETE", user_list_path(@user, list), class:'btn-sm btn-outline-secondary list-button', method:'delete'%>
       </div>
 
     </div>
