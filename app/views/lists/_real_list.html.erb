@@ -20,9 +20,9 @@
         <ul>
           <% list.tasks.each_with_index do |task, i| %>
           <% if i.even? %>
-            <li><%= task.name %></li>
+            <li><%= task.name %><%= link_to "X", task, class:'btn-sm btn-outline-secondary list-button', method:'delete' %></li>
             <% else %>
-            <li class="lg"><%= task.name %></li>
+            <li class="lg"><%= task.name %><%= link_to "X", task, class:'btn-sm btn-outline-secondary list-button', method:'delete' %></li>
             <% end %>
           <% end %>
         <% end %>
