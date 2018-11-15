@@ -25,11 +25,15 @@
         </ul>
       </div>
 
+      <!--Edit users-->
+
+      <div class="row">
+        <%= f.collection_check_boxes :user_ids, User.all, :id, :username %>
+      </div>
 
       <!--Task List Footer-->
       <div class="row list-footer-box">
         <button type="submit" class="btn-sm btn-outline-secondary list-button float-right ml-auto" method="post">SAVE</button>
-        <%= button_to('SAVE', :type => 'submit', :class => 'btn-sm btn-outline-secondary new-list-button float-right', :method => 'post')%>
       </div>
 
     </div>

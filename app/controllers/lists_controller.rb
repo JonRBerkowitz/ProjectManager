@@ -12,7 +12,6 @@ class ListsController < ApplicationController
 
   def create
     @list = List.new(list_params)
-    @list.users << current_user
     if @list.save
       redirect_to user_lists_path
     else
@@ -23,7 +22,7 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:title, :due_date)
+    params.require(:list).permit(:title, :due_date, user_ids:[])
   end
 
 end
