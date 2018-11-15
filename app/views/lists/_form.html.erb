@@ -22,6 +22,16 @@
       <!--Edit tasks-->
       <div class="row list-tasks">
         <ul>
+          <% if @list.tasks %>
+          <ul>
+            <% @list.tasks.each_with_index do |task, i| %>
+            <% if i.even? %>
+              <li><%= task.name %></li>
+              <% else %>
+              <li class="lg"><%= task.name %></li>
+              <% end %>
+            <% end %>
+          <% end %>
             <%= render 'task_form', f: f %>
         </ul>
       </div>
@@ -34,7 +44,7 @@
 
       <!--Task List Footer-->
       <div class="row list-footer-box">
-        <button type="submit" class="btn-sm btn-outline-secondary list-button float-right ml-auto" method="post">ADD TASK</button>
+        <button type="submit" class="btn-sm btn-outline-secondary list-button float-right ml-auto" method="post" >ADD TASK</button>
         <button type="submit" class="btn-sm btn-outline-secondary list-button float-right" method="post">SAVE</button>
       </div>
 
