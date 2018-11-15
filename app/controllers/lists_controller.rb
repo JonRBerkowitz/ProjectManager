@@ -8,6 +8,7 @@ class ListsController < ApplicationController
   def new
     @list = List.new
     @user = current_user
+    @list.tasks.build
   end
 
   def create
@@ -22,7 +23,7 @@ class ListsController < ApplicationController
   private
 
   def list_params
-    params.require(:list).permit(:title, :due_date, user_ids:[])
+    params.require(:list).permit(:title, :due_date, user_ids:[], tasks_attributes: [:name, :done])
   end
 
 end

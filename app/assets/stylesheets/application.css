@@ -18,6 +18,14 @@
     outline: none;
   }
 
+  .checkboxes label {
+    padding-left: 8px;
+  }
+
+  .checkboxes input{
+    padding-left: 8px;
+  }
+
  .done_task {
    text-decoration: line-through;
    color: #bcbec0;

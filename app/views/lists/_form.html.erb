@@ -22,18 +22,20 @@
       <!--Edit tasks-->
       <div class="row list-tasks">
         <ul>
+            <%= render 'task_form', f: f %>
         </ul>
       </div>
 
       <!--Edit users-->
 
-      <div class="row">
+      <div class="row checkboxes">
         <%= f.collection_check_boxes :user_ids, User.all, :id, :username %>
       </div>
 
       <!--Task List Footer-->
       <div class="row list-footer-box">
-        <button type="submit" class="btn-sm btn-outline-secondary list-button float-right ml-auto" method="post">SAVE</button>
+        <button type="submit" class="btn-sm btn-outline-secondary list-button float-right ml-auto" method="post">ADD TASK</button>
+        <button type="submit" class="btn-sm btn-outline-secondary list-button float-right" method="post">SAVE</button>
       </div>
 
     </div>
