@@ -1,5 +1,5 @@
 class ListsController < ApplicationController
-before_action :current_user
+before_action :authentication_required
 
   def index
     @lists = current_user.lists
