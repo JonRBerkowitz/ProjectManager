@@ -1,4 +1,10 @@
+<div class="row fixed-top new-list-box">
+   <div class="col-md-12 new-list-spacer">
+       <%= link_to "New Project", new_user_list_path(current_user) %> | 
+       <%= link_to "Logout", logout_path %>
+   </div>
+</div>
 <div class="row">
-  <span class="text-center headline">Current User's Tasks</span>
+  <span class="text-center headline"><%= @user.username %>'s Projects</span>
 </div>
   <%= render 'real_list' %>

@@ -6,8 +6,8 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-jon = User.create(username: "jman")
-justine = User.create(username: "boosh")
+jon = User.create(username: "jman", password: "password")
+justine = User.create(username: "boosh", password: "password")
 
 house = List.create(title: "House", due_date: "April 15")
 wedding = List.create(title: "Wedding", due_date: "Sept 6")
