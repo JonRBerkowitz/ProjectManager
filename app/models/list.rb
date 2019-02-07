@@ -5,5 +5,6 @@ class List < ApplicationRecord
 
   accepts_nested_attributes_for :tasks
 
+  validates :title, presence: true
   validates :due_date, presence: true
 end

@@ -5,4 +5,7 @@
   <%= f.label :password %>
   <%= f.text_field :password %><br>
   <%= f.submit 'Submit' %>
+   <% @user.errors.full_messages.each do |msg| %>
+     <p><%= msg %></p>
+   <% end %>
 <% end %>
