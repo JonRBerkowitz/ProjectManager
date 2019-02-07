@@ -9,8 +9,5 @@ class User < ApplicationRecord
   validates :username, :uniqueness => true
   validates :username, length: { in: 6..32 }
 
-  validates :password_digest, :presence => true
-  validates :password_digest, :uniqueness => true
-  validates :password_digest, length: { in: 8..32 }
-
+  validates :password, length: { in: 8..32 }
 end

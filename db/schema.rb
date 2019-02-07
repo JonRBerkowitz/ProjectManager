@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2018_11_09_191839) do
   create_table "list_users", force: :cascade do |t|
     t.integer "user_id"
     t.integer "list_id"
+    t.string "team_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -28,8 +29,6 @@ ActiveRecord::Schema.define(version: 2018_11_09_191839) do
 
   create_table "tasks", force: :cascade do |t|
     t.string "name"
-    t.text "description"
-    t.datetime "due_date"
     t.boolean "done", default: false
     t.integer "list_id"
     t.datetime "created_at", null: false

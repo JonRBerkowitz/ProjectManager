@@ -17,9 +17,9 @@ jon.lists << house
 justine.lists << house
 justine.lists << wedding
 
-taska = Task.create(name: "Wash car", description: "Wash the Toyota with soap and water", due_date: "April 10")
-taskb = Task.create(name: "Do dishes", description: "Put the dishes in the dishwasher", due_date: "April 1")
-taskc = Task.create(name: "Hire photographer", description: "Get quotes and choose a photographer", due_date: "Sept 6")
+taska = Task.create(name: "Wash car")
+taskb = Task.create(name: "Do dishes")
+taskc = Task.create(name: "Hire photographer")
 
 house.tasks << taska
 house.tasks << taskb
