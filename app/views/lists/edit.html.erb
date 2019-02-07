@@ -33,7 +33,7 @@
       <!--Edit users-->
 
       <div class="row checkboxes">
-        <%= f.collection_check_boxes :user_ids, User.all, :id, :username %>
+        <%= f.collection_check_boxes :user_ids, User.all, :id, :email %>
       </div>
 
       <!--Task List Footer-->
