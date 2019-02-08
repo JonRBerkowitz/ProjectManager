@@ -9,8 +9,8 @@
 jon = User.create(email: "jman", password: "password")
 justine = User.create(email: "boosh", password: "password")
 
-house = List.create(title: "House", due_date: "April 15")
-wedding = List.create(title: "Wedding", due_date: "Sept 6")
+house = Project.create(name: "House", due_date: "April 15")
+wedding = Project.create(name: "Wedding", due_date: "Sept 6")
 
 jon.lists << house
 

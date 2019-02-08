@@ -10,18 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_09_191839) do
+ActiveRecord::Schema.define(version: 2019_02_08_213903) do
 
-  create_table "list_users", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "list_id"
-    t.string "team_name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "lists", force: :cascade do |t|
-    t.string "title"
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
     t.datetime "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -30,7 +22,8 @@ ActiveRecord::Schema.define(version: 2018_11_09_191839) do
   create_table "tasks", force: :cascade do |t|
     t.string "name"
     t.boolean "done", default: false
-    t.integer "list_id"
+    t.integer "project_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

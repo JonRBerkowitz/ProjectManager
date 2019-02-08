@@ -1,9 +1,10 @@
 class CreateTasks < ActiveRecord::Migration[5.2]
   def change
     create_table :tasks do |t|
-      t.string :name
+      t.string  :name
       t.boolean :done, :default => false
-      t.integer :list_id
+      t.integer :project_id
+      t.integer :user_id
       t.timestamps
     end
   end
