@@ -1,0 +1,6 @@
+<%= f.fields_for :tasks do |t| %>
+    <li>
+    	<%= t.text_field :name %>
+    	<%= t.collection_select(:user_id, User.all, :id, :email) %>
+    </li>
+<% end %>

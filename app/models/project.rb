@@ -4,4 +4,6 @@ class Project < ApplicationRecord
 
   validates :name, presence: true
   validates :due_date, presence: true
+
+  accepts_nested_attributes_for :tasks
 end

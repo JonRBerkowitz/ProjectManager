@@ -4,7 +4,7 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     @task.destroy
     @user = current_user
-    redirect_to user_lists_path(@user)
+    redirect_to user_projects_path(@user)
   end
 
   def update
@@ -12,14 +12,14 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
 
     @task.update(task_params)
-    redirect_to user_lists_path(@user)
+    redirect_to user_projects_path(@user)
   end
 
   private
 
   def task_params
     @task = Task.find(params[:id])
-    params.permit(:done, :id, :list_id)
+    params.permit(:done, :id, :project_id, :user_id)
   end
 
 end

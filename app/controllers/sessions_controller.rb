@@ -10,12 +10,12 @@ class SessionsController < ApplicationController
       oauth_email = request.env["omniauth.auth"]["info"]["email"]
       if user = User.find_by(email: oauth_email)
         session[:user_id] = user.id
-        redirect_to user_lists_path(user)
+        redirect_to user_projects_path(user)
       else
         user = User.create(email: oauth_email, password: SecureRandom.hex)
         if user.save
           session[:user_id] = user.id
-          redirect_to user_lists_path(user)
+          redirect_to user_projects_path(user)
         else
           render :new
         end
@@ -25,7 +25,7 @@ class SessionsController < ApplicationController
     	@user = User.find_by(:email => params[:email])
       if @user && @user.authenticate(params[:password])
     	 session[:user_id] = @user.id
-    	 redirect_to user_lists_path(@user)
+    	 redirect_to user_projects_path(@user)
       else
         flash.now[:message] = 'Invalid username/password combination'
         render :new

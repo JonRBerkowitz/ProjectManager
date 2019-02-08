@@ -7,20 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 jon = User.create(email: "jman", password: "password")
-justine = User.create(email: "boosh", password: "password")
 
 house = Project.create(name: "House", due_date: "April 15")
-wedding = Project.create(name: "Wedding", due_date: "Sept 6")
 
-jon.lists << house
-
-justine.lists << house
-justine.lists << wedding
-
-taska = Task.create(name: "Wash car")
-taskb = Task.create(name: "Do dishes")
-taskc = Task.create(name: "Hire photographer")
-
-house.tasks << taska
-house.tasks << taskb
-wedding.tasks << taskc
+t = Task.create(name: "test task". user_id: 1, project_id: 1)

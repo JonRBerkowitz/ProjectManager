@@ -1,0 +1,63 @@
+
+  <!--Begin Task Row--> 
+  <div class="row">
+    <% @projects.each do |project| %>
+    <!-- Begin Task List-->
+    <div class="col-md-4 task-box">
+
+      <!--Task List Header-->
+      <div class="row list-title-box">
+        <span class="list-title"><%= project.name %></span>
+      </div>
+
+      <div class="row due-box">
+        <span class="due-date">Due: <%= project.due_date.strftime("%b. %d, %Y") %></span>
+      </div>
+
+      <!--Task List Content-->
+      <div class="row list-tasks">
+        <% if project.tasks %>
+        <ul>
+          <% project.tasks.each_with_index do |task, i| %>
+          <% if i.even? %>
+          <li>
+              <% if task.done == true %>
+                <span class="done_task">
+              <% else %>
+                <span>
+              <% end %>
+              <%= task.name %>
+              </span>
+              <%= link_to "DONE", task_path(task, done: !task.done), class:'btn-sm btn-outline-secondary list-button', method:'put' %>
+              <%= link_to "DEL.", task, class:'btn-sm btn-outline-secondary list-button', method:'delete' %>
+            </li>
+            <% else %>
+            <li class="lg">
+                <% if task.done == true %>
+                  <span class="done_task">
+                <% else %>
+                  <span>
+                <% end %>
+                <%= task.name %>
+                </span>
+                <%= link_to "DONE", task_path(task, done: !task.done), class:'btn-sm btn-outline-secondary list-button', method:'put' %>
+                <%= link_to "DEL.", task, class:'btn-sm btn-outline-secondary list-button', method:'delete' %>
+              </li>
+            <% end %>
+          <% end %>
+        <% end %>
+        </ul>
+      </div>
+
+      <!--Task List Footer-->
+      <div class="row list-footer-box">
+        <%= button_to "EDIT", edit_user_project_path(@user, project), class:'btn-sm btn-outline-secondary list-button', method:'get' %>
+        <%= button_to "DELETE", user_project_path(@user, project), class:'btn-sm btn-outline-secondary list-button', method:'delete'%>
+      </div>
+
+    </div>
+    <!--End Task List-->
+<% end %>
+  </div>
+
+  <!--End Task Row-->
