@@ -1,7 +1,10 @@
 <div class="row fixed-top new-list-box">
    <div class="col-md-12 new-list-spacer">
        <%= link_to "New Project", new_user_list_path(current_user) %> | 
+       <%= link_to "My Lists", user_lists_path(current_user) %> |
+       <%= link_to "All Lists", lists_path %> |
        <%= link_to "Logout", logout_path %>
+
    </div>
 </div>
 <div class="row">

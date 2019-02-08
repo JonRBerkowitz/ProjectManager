@@ -8,6 +8,6 @@ Rails.application.routes.draw do
   resources :users, only: [:create, :destroy, :index] do
     resources :lists
   end
-  resources :lists, only: [:edit]
+  resources :lists, only: [:edit, :index]
   resources :tasks, only: [:destroy, :edit, :update]
 end

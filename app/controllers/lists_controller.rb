@@ -2,7 +2,12 @@ class ListsController < ApplicationController
 before_action :authentication_required
 
   def index
-    @lists = current_user.lists
+    @user = User.find_by_id(params[:user_id])
+    if @user
+      @lists = @user.lists
+    else
+      @lists = List.all
+    end
     @user = current_user
   end
 
