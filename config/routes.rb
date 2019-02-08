@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback', to: 'sessions#create'
   get '/logout', to: 'sessions#destroy'
   get '/signup', to: 'users#new'
+  get '/lists/overdue', to: 'lists#overdue'
   resources :users, only: [:create, :destroy, :index] do
     resources :lists
   end

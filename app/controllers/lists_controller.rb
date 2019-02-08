@@ -11,6 +11,11 @@ before_action :authentication_required
     @user = current_user
   end
 
+  def overdue
+    @lists = List.overdue
+    @user = current_user
+  end
+  
   def new
     @list = List.new
     @user = current_user
