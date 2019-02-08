@@ -6,6 +6,8 @@ class List < ApplicationRecord
     where("due_date < ?", Time.now)
   end
   accepts_nested_attributes_for :tasks
+    accepts_nested_attributes_for :users
+
 
   validates :title, presence: true
   validates :due_date, presence: true

@@ -16,7 +16,7 @@ before_action :authentication_required
     @user = current_user
     @list = List.new(list_params)
 
-      if @list.save
+      if @list.save!
         if params[:task_field] == "ADD TASK"
           flash[:redirect] = "ADD"
           redirect_to edit_user_list_path(@user, @list)
@@ -39,7 +39,7 @@ before_action :authentication_required
   def update
     @list = List.find(params[:id])
     @user = current_user
-    if @list.update(list_params)
+    if @list.update!(list_params)
       if params[:task_field] == "ADD TASK"
         flash[:redirect] = "ADD"
         redirect_to edit_user_list_path(@user, @list)
@@ -68,7 +68,7 @@ before_action :authentication_required
   private
 
   def list_params
-    params.require(:list).permit(:title, :due_date, :sub_type, user_ids:[], tasks_attributes: [:id, :name, :done])
+    params.require(:list).permit(:title, :due_date, user_ids:[], tasks_attributes: [:id, :name, :done])
   end
 
 end

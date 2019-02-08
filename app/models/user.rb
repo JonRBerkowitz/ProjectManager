@@ -8,5 +8,4 @@ class User < ApplicationRecord
   validates :email, :presence => true
   validates :email, :uniqueness => true
 
-  validates :password, length: { in: 8..32 }
 end
