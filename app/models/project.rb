@@ -6,4 +6,8 @@ class Project < ApplicationRecord
   validates :due_date, presence: true
 
   accepts_nested_attributes_for :tasks
+
+  def self.overdue
+    where("due_date < ?", Time.now)
+  end
 end
