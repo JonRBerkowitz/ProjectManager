@@ -26,10 +26,11 @@
               <% else %>
                 <span>
               <% end %>
-              <%= task.name %>
-              </span>
+              <strong><%= task.name %></strong>
               <%= link_to "DONE", task_path(task, done: !task.done), class:'btn-sm btn-outline-secondary list-button', method:'put' %>
-              <%= link_to "DEL.", task, class:'btn-sm btn-outline-secondary list-button', method:'delete' %>
+              <%= link_to "DEL.", task, class:'btn-sm btn-outline-secondary list-button', method:'delete' %> <br>
+              <span><%= task.user.email %></span><br>
+
             </li>
             <% else %>
             <li class="lg">
@@ -38,7 +39,7 @@
                 <% else %>
                   <span>
                 <% end %>
-                <%= task.name %>
+                <strong><%= task.name %></strong> <%= task.user.email %>
                 </span>
                 <%= link_to "DONE", task_path(task, done: !task.done), class:'btn-sm btn-outline-secondary list-button', method:'put' %>
                 <%= link_to "DEL.", task, class:'btn-sm btn-outline-secondary list-button', method:'delete' %>

@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
     @user = current_user
     @project = Project.new(project_params)
 
-      if @project.save!
+      if @project.save
         if params[:task_field] == "ADD TASK"
           flash[:redirect] = "ADD"
           redirect_to edit_user_project_path(@user, @project)
@@ -48,7 +48,7 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     @user = current_user
-    if @project.update!(project_params)
+    if @project.update(project_params)
       if params[:task_field] == "ADD TASK"
         flash[:redirect] = "ADD"
         redirect_to edit_user_project_path(@user, @project)
