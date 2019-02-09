@@ -19,7 +19,7 @@ class TasksController < ApplicationController
 
   def task_params
     @task = Task.find(params[:id])
-    params.permit(:done, :id, :project_id, :user_id)
+    params.permit(:name, :done, :id, :project_id, :user_id)
   end
 
 end

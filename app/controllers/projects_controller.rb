@@ -24,13 +24,12 @@ class ProjectsController < ApplicationController
   def create
     @user = current_user
     @project = Project.new(project_params)
-
       if @project.save
-        if params[:task_field] == "ADD TASK"
-          flash[:redirect] = "ADD"
-          redirect_to edit_user_project_path(@user, @project)
-        else
+        if (params[:commit]) == "Save"
           redirect_to user_projects_path
+        elsif (params[:commit]) == "Add Task"
+          flash[:add] = "ADD"
+          redirect_to edit_user_project_path(@user, @project)
         end
       else
         render :new
@@ -40,7 +39,7 @@ class ProjectsController < ApplicationController
   def edit
     @user = current_user
     @project = Project.find(params[:id])
-    if flash[:redirect] == "ADD"
+    if flash[:add] == "ADD"
       @project.tasks.build
     end
   end
@@ -48,13 +47,13 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     @user = current_user
-    if @project.update!(project_params)
-      if params[:task_field] == "ADD TASK"
-        flash[:redirect] = "ADD"
-        redirect_to edit_user_project_path(@user, @project)
-      else
-        redirect_to user_projects_path
-      end
+    if @project.update(project_params)
+        if (params[:commit]) == "Save"
+          redirect_to user_projects_path
+        elsif (params[:commit]) == "Add Task"
+          flash[:add] = "ADD"
+          redirect_to edit_user_project_path(@user, @project)
+        end
     else
       render :edit
     end
@@ -69,7 +68,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:id, :name, :due_date, tasks_attributes: [:user_id, :project_id, :name, :done, :id])
+    params.require(:project).permit(:name, :due_date, tasks_attributes: [:user_id, :project_id, :name, :done, :id])
   end
 
 end

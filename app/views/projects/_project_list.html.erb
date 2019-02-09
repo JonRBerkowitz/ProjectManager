@@ -1,7 +1,7 @@
 
   <!--Begin Task Row--> 
   <div class="row">
-    <% @projects.each do |project| %>
+    <% @projects.uniq.each do |project| %>
     <!-- Begin Task List-->
     <div class="col-md-4 task-box">
 
