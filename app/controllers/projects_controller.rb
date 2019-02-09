@@ -48,7 +48,7 @@ class ProjectsController < ApplicationController
   def update
     @project = Project.find(params[:id])
     @user = current_user
-    if @project.update(project_params)
+    if @project.update!(project_params)
       if params[:task_field] == "ADD TASK"
         flash[:redirect] = "ADD"
         redirect_to edit_user_project_path(@user, @project)
@@ -66,18 +66,10 @@ class ProjectsController < ApplicationController
     redirect_to user_projects_path
   end
 
-
-  def add_task
-    @project = Project.find(params[:id])
-    @user = current_user
-    @project.tasks.build
-    render :new
-  end
-
   private
 
   def project_params
-    params.require(:project).permit(:name, :due_date, user_ids:[], tasks_attributes: [:user_id, :project_id, :name, :done])
+    params.require(:project).permit(:id, :name, :due_date, tasks_attributes: [:user_id, :project_id, :name, :done, :id])
   end
 
 end
