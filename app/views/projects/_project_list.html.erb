@@ -52,8 +52,8 @@
 
       <!--Task List Footer-->
       <div class="row list-footer-box">
-        <%= button_to "EDIT", edit_user_project_path(@user, project), class:'btn-sm btn-outline-secondary list-button', method:'get' %>
-        <%= button_to "DELETE", user_project_path(@user, project), class:'btn-sm btn-outline-secondary list-button', method:'delete'%>
+        <%= button_to "EDIT", edit_user_project_path(current_user, project), class:'btn-sm btn-outline-secondary list-button', method:'get' %>
+        <%= button_to "DELETE", user_project_path(current_user, project), class:'btn-sm btn-outline-secondary list-button', method:'delete'%>
       </div>
 
     </div>

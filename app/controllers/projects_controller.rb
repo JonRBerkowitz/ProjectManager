@@ -3,35 +3,34 @@ class ProjectsController < ApplicationController
 
   def index
     @user = User.find_by_id(params[:user_id])
-    if @user
+    if @user && @user.id == current_user.id
       @your = "Your"
       @projects = @user.projects
+      flash[:edit_task] = "USER"
     else
       @projects = Project.all
+      flash[:edit_task] = "ALL"
     end
     @user = current_user
   end
 
   def overdue
     @projects = Project.overdue
-    @user = current_user
   end
   
   def new
     @project = Project.new
-    @user = current_user
     @project.tasks.build
   end
 
   def create
-    @user = current_user
     @project = Project.new(project_params)
       if @project.save
         if (params[:commit]) == "Save"
           redirect_to user_projects_path
         elsif (params[:commit]) == "Add Task"
           flash[:add] = "ADD"
-          redirect_to edit_user_project_path(@user, @project)
+          redirect_to edit_user_project_path(current_user, @project)
         end
       else
         render :new
@@ -39,7 +38,6 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @user = current_user
     @project = Project.find(params[:id])
     if flash[:add] == "ADD"
       @project.tasks.build
@@ -48,13 +46,12 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    @user = current_user
     if @project.update(project_params)
         if (params[:commit]) == "Save"
           redirect_to user_projects_path
         elsif (params[:commit]) == "Add Task"
           flash[:add] = "ADD"
-          redirect_to edit_user_project_path(@user, @project)
+          redirect_to edit_user_project_path(current_user, @project)
         end
     else
       render :edit
@@ -65,6 +62,12 @@ class ProjectsController < ApplicationController
     @project = Project.find(params[:id])
     @project.destroy
     redirect_to user_projects_path
+  end
+
+  def correct_user?
+    unless current_user == params[:user_id]
+      redirect_to user_projects_path(current_user)
+    end
   end
 
   private
