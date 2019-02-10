@@ -1,8 +1,10 @@
 class ProjectsController < ApplicationController
+  before_action :authentication_required
 
   def index
     @user = User.find_by_id(params[:user_id])
     if @user
+      @your = "Your"
       @projects = @user.projects
     else
       @projects = Project.all

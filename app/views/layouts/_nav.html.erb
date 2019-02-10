@@ -1,0 +1,9 @@
+<div class="row fixed-top new-list-box">
+   <nav class="col-md-12">
+       <%= link_to "New Project", new_user_project_path(current_user) %> | 
+       <%= link_to "My Projects", user_projects_path(current_user) %> | 
+       <%= link_to "Overdue Projects", projects_overdue_path %> | 
+       <%= link_to "All Projects", projects_path %> | 
+       <%= link_to "Logout", logout_path %>
+   </nav>
+</div>

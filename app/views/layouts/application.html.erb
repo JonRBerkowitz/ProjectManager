@@ -21,7 +21,7 @@
     <div class="container">
 
     <!-- NAVBAR -->
-
+    <%= render 'layouts/nav' unless @disable_nav%>
     <!--END NAVBAR-->
     <%= yield %>
     </div>

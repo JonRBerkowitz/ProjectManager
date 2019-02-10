@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+before_action :disable_nav, only:[:new]
 
   def new
     @user = User.new

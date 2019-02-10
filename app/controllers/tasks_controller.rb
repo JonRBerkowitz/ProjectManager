@@ -1,4 +1,5 @@
 class TasksController < ApplicationController
+  before_action :authentication_required
 
   def destroy
     @task = Task.find(params[:id])
