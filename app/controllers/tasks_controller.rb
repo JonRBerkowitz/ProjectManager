@@ -9,7 +9,6 @@ class TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
-
     @task.update(task_params)
     single_user?
   end
