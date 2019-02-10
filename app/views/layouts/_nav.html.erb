@@ -1,5 +1,6 @@
 <div class="row fixed-top new-list-box">
    <nav class="col-md-12">
+   	<strong><%= current_user.email %></strong> |
        <%= link_to "New Project", new_user_project_path(current_user) %> | 
        <%= link_to "My Projects", user_projects_path(current_user) %> | 
        <%= link_to "Overdue Projects", projects_overdue_path %> | 
