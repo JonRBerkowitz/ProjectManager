@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-before_action :disable_nav, only:[:new]
+before_action :disable_nav, only:[:new, :create]
 
   def new
     @user = User.new
