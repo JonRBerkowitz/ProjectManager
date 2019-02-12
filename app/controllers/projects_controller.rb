@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-    @project.tasks.build(user_id: params[:user_id])
+    build_task
   end
 
   def create
@@ -45,7 +45,7 @@ class ProjectsController < ApplicationController
   def edit
     @project = Project.find(params[:id])
     if flash[:add] == "ADD"
-      @project.tasks.build(user_id: params[:user_id])
+    build_task
     end
   end
 
@@ -72,6 +72,14 @@ class ProjectsController < ApplicationController
   def correct_user?
     unless current_user == params[:user_id]
       redirect_to user_projects_path(current_user)
+    end
+  end
+
+  def build_task
+    if User.find_by_id(params[:user_id])
+      @project.tasks.build(user_id: params[:user_id])
+    else
+      @project.tasks.build(user_id: current_user.id)
     end
   end
 
