@@ -3,7 +3,11 @@ class TasksController < ApplicationController
 
   def destroy
     @task = Task.find(params[:id])
+    @project = Project.find_by_id(@task.project_id)
     @task.destroy
+    if @project.tasks.empty?
+      @project.destroy
+    end
     single_user?
   end
 
