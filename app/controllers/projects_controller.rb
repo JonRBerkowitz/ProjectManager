@@ -25,7 +25,7 @@ class ProjectsController < ApplicationController
 
   def new
     @project = Project.new
-    @project.tasks.build
+    @project.tasks.build(user_id: params[:user_id])
   end
 
   def create
@@ -45,7 +45,7 @@ class ProjectsController < ApplicationController
   def edit
     @project = Project.find(params[:id])
     if flash[:add] == "ADD"
-      @project.tasks.build
+      @project.tasks.build(user_id: params[:user_id])
     end
   end
 
