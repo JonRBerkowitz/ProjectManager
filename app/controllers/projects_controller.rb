@@ -18,6 +18,11 @@ class ProjectsController < ApplicationController
     @projects = Project.overdue
   end
   
+  def finished
+    @projects = Project.finished
+  end
+
+
   def new
     @project = Project.new
     @project.tasks.build

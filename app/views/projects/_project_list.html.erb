@@ -1,7 +1,7 @@
 
   <!--Begin Task Row--> 
   <div class="row">
-    <% @projects.where(id: Task.pluck(:project_id)).uniq.each do |project| %>
+    <% @projects.uniq.each do |project| %>
     <!-- Begin Task List-->
     <div class="col-md-4 task-box">
 
