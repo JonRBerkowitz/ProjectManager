@@ -1,14 +1,20 @@
-<h1>Log In</h1>
-<%= form_tag login_path do %>
-	<%= label_tag 'email' %><br>
-	<%= text_field_tag 'email' %><br>
-	<%= label_tag 'password' %><br>
-	<%= text_field_tag 'password' %><br>
-	<%= submit_tag 'Log in' %>
-    
-    <br>
-    <%= flash[:message] %>
-<% end %>
+<div class="flex-login-bg">
+	<div class="flex-login">
+		<div>
+			<%= form_tag login_path do %>
+				<%= label_tag 'email' %><br>
+				<%= text_field_tag 'email' %><br>
+				<%= label_tag 'password' %><br>
+				<%= text_field_tag 'password' %><br>
+				<%= submit_tag 'Log in', class: "login_button" %>
+			    
+			    <br>
+			<% end %>
+			<p>or</p>
+			<%= button_to('Log in with github!', '/auth/github', class: "login_button") %>
+			<%= link_to('Need to Sign Up? Click here!', signup_path, id: "signup_link") %>
+		</div>
+	</div>
+				<p><%= flash[:message] %></p>
 
-<%= link_to('Log in with github!', '/auth/github') %><br>
-<%= link_to('Need to Sign Up?', signup_path) %>
+</div>
