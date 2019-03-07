@@ -3,9 +3,9 @@
 		<div>
 			<%= form_tag login_path do %>
 				<%= label_tag 'email' %><br>
-				<%= text_field_tag 'email' %><br>
+				<%= text_field_tag 'email', "", class:'login-input' %><br>
 				<%= label_tag 'password' %><br>
-				<%= text_field_tag 'password' %><br>
+				<%= password_field_tag 'password', "", class:'login-input' %><br>
 				<%= submit_tag 'Log in', class: "login_button" %>
 			    
 			    <br>
