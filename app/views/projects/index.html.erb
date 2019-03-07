@@ -9,6 +9,7 @@
 				<h2>Project Title</h2>
 			</div>
 			<div class="task-box">
+				
 				<div class="task">
 					<div class="task-name">
 						<h3>Task Name</h3>
@@ -16,6 +17,29 @@
 					</div>
 					<div class="marker"><%= image_tag(("check.png"), :class => "check") %></div>
 					<div class="marker"><%= image_tag("x.png") %></div>
+				</div>
+
+				<div class="note-box">
+					<p class="comment"><span class="commenter">Jon:</span>I don't have time to work on this project right now.</p>
+					<p class="comment"><span class="commenter">Boss:</span> Make time.</p>
+					<p class="comment"><span class="commenter">Jon:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+
+					<hr>
+				</div>
+
+								<div class="task">
+					<div class="task-name">
+						<h3>Task Name</h3>
+						<h4>Due: March 18</h4>
+					</div>
+					<div class="marker"><%= image_tag(("check.png"), :class => "check") %></div>
+					<div class="marker"><%= image_tag("x.png") %></div>
+				</div>
+
+				<div class="note-box">
+					<p><strong>Jon:</strong> I don't have time to work on this project right now.</p>
+
+					<hr>
 				</div>
 																
 			</div>
@@ -26,3 +50,15 @@
 		<div class="grid-item"></div>
 	</div>
 </div>
+<script>
+
+	$(document).ready(function() {
+	$('.note-box').hide();
+	$('.task-name').click(function() {
+		$('.note-box').slideToggle("slow", function() {
+
+		});
+	});
+	});
+
+</script>

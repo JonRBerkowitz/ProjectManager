@@ -92,15 +92,13 @@
 
   .task h4 {
     font-size: .75em;
-    flex: 3;
+    flex: 5;
     margin-top: -15px;
   }
 
   .marker {
-    flex: 1;
-    float: left;
-    margin-top: 5px;
-    text-align: right;
+    flex: ;
+    margin-top: 6px;
   }
 
   .marker img {
@@ -110,8 +108,14 @@
     cursor: pointer;
   }
 
-  .check {
-    margin-right: -35px;
+  .comment {
+    font-size: .7em;
+    padding-left: 20px;
+  }
+
+  .commenter {
+    color: #0C43A5;
+    font-weight: bold;
   }
 
  .flex-login-bg {
