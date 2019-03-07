@@ -16,7 +16,7 @@
 			<div class="task-box">
 			{{#each tasks}}
 				<div class="task">
-					<div class="task-name" id=task-{{id}} onClick="retrieveComments(this)">
+					<div class="task-name" id="{{id}}task" onClick="retrieveComments(this)">
 						<h3>{{name}}</h3>
 						<h4>{{due_date}}</h4>
 					</div>
@@ -25,7 +25,8 @@
 					<div class="marker"><%= image_tag("x.png") %></div>
 				</div>
 
-				<div class="note-box">
+				<div class="note-box" id="{{id}}box">
+					<div></div>
 					<input class="add-note" type="text" placeholder="Add Note"></input>
 					<hr>
 
@@ -39,7 +40,7 @@
 
 <script id="note-template", type="text/x-handlebars-template">
 	{{#each notes}}
-		<p class="comment"><span class="commenter">{{user_id}}</span> {{content}}</p>
+		<p class="comment"><span class="commenter">{{user_id}}:</span> {{content}}</p>
 	{{/each}}		
 </script>
 
@@ -54,30 +55,24 @@
 				var template = Handlebars.compile(source);
 				var result = template(data);
 				console.log(data);
-				$('.grid-row').html(result)
+				$('.grid-row').prepend(result);
+				$('.note-box').hide();
 			}
 		});
 	});
 
-	$(document).ready(function() {
-	$('.task-name').click(function() {
-		$('.note-box').slideToggle("slow", function() {
-
-		});
-	});
-	});
-
 	function retrieveComments(obj) {
-		console.log(obj);
 		$.ajax({
 			dataType: "json",
-			url: `/tasks/1`,
+			url: `/tasks/${parseInt(obj.id)}`,
 			success: function(data) {
 				var source = document.getElementById("note-template").innerHTML;
 				var template = Handlebars.compile(source);
 				var result = template(data);
-				console.log(result);
-				$('.note-box').html(result)
+				console.log(data);
+				$(` #${data.id}box div `).html(result);
+				$(` #${data.id}box `).slideToggle("slow", function() {	
+				});
 			}
 		});
 	}
