@@ -14,7 +14,6 @@ ActiveRecord::Schema.define(version: 2019_02_08_213903) do
 
   create_table "projects", force: :cascade do |t|
     t.string "name"
-    t.datetime "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -24,6 +23,7 @@ ActiveRecord::Schema.define(version: 2019_02_08_213903) do
     t.boolean "done", default: false
     t.integer "project_id"
     t.integer "user_id"
+    t.datetime "due_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

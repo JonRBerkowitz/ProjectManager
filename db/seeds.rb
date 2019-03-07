@@ -8,8 +8,8 @@
 
 User.create(email: "jon@gmail.com", password: "password")
 User.create(email: "justine@gmail.com", password: "password")
-Project.create(name: "Chores", due_date: "March 1")
-Project.create(name: "Coding", due_date: "April 15")
-Task.create(name: "Clean the kitchen", user_id: 1, project_id: 1)
-Task.create(name: "Take out the trash", user_id: 2, project_id: 1)
-Task.create(name: "Start Javascript Lessons", user_id: 1, project_id: 2)
+Project.create(name: "Chores")
+Project.create(name: "Coding")
+Task.create(name: "Clean the kitchen", user_id: 1, project_id: 1, due_date: "March 18")
+Task.create(name: "Take out the trash", user_id: 2, project_id: 1, due_date: "March 19")
+Task.create(name: "Start Javascript Lessons", user_id: 1, project_id: 2, due_date: "March 21")
