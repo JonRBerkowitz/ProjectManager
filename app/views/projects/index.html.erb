@@ -3,17 +3,48 @@
 </div>
 
 <div class="container">
-	<div class="grid-row">
+	<div class="grid-row"></div>
+</div>
+
+<script>
+
+	$(document).ready(function() {
+		$.ajax({
+			dataType: "json",
+			url: `/projects`,
+			success: function(data) {
+				var source = document.getElementById("item-template").innerHTML;
+				var template = Handlebars.compile(source);
+				var result = template(data);
+				console.log(data);
+				$('.grid-row').html(result)
+			}
+		});
+	});
+
+	$(document).ready(function() {
+	$('.note-box').hide();
+	$('.task-name').click(function() {
+		$('.note-box').slideToggle("slow", function() {
+
+		});
+	});
+	});
+
+</script>
+
+<script id="item-template", type="text/x-handlebars-template">
+	{{#each this}}
 		<div class="grid-item">
 			<div class="project-name">
-				<h2>Project Title</h2>
+				<h2>{{name}}</h2>
 			</div>
 			<div class="task-box">
-				
+			{{#each tasks}}
 				<div class="task">
 					<div class="task-name">
-						<h3>Task Name</h3>
-						<h4>Due: March 18</h4>
+						<h3>{{name}}</h3>
+						<h4>{{due_date}}</h4>
 					</div>
 					<div class="marker"><%= image_tag("edit.png") %></div>
 					<div class="marker"><%= image_tag(("check.png"), :class => "check") %></div>
@@ -28,26 +59,9 @@
 					<hr>
 
 				</div>
-																
+			{{/each}}											
 			</div>
 			<div class="add-task-button">+ Add task</div>
 		</div>
-
-		<div class="grid-item"></div>
-		<div class="grid-item"></div>
-		<div class="grid-item"></div>
-		<div class="grid-item"></div>
-	</div>
-</div>
-<script>
-
-	$(document).ready(function() {
-	$('.note-box').hide();
-	$('.task-name').click(function() {
-		$('.note-box').slideToggle("slow", function() {
-
-		});
-	});
-	});
-
+		{{/each}}
 </script>
