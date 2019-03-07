@@ -11,6 +11,11 @@ class TasksController < ApplicationController
     single_user?
   end
 
+  def show
+    @task = Task.find_by_id(params[:id])
+    render json: @task, status: 200
+  end
+
   def update
     @task = Task.find(params[:id])
     @task.update(task_params)

@@ -6,6 +6,43 @@
 	<div class="grid-row"></div>
 </div>
 
+
+<script id="item-template", type="text/x-handlebars-template">
+	{{#each this}}
+		<div class="grid-item">
+			<div class="project-name">
+				<h2>{{name}}</h2>
+			</div>
+			<div class="task-box">
+			{{#each tasks}}
+				<div class="task">
+					<div class="task-name" id=task-{{id}} onClick="retrieveComments(this)">
+						<h3>{{name}}</h3>
+						<h4>{{due_date}}</h4>
+					</div>
+					<div class="marker"><%= image_tag("edit.png") %></div>
+					<div class="marker"><%= image_tag(("check.png"), :class => "check") %></div>
+					<div class="marker"><%= image_tag("x.png") %></div>
+				</div>
+
+				<div class="note-box">
+					<input class="add-note" type="text" placeholder="Add Note"></input>
+					<hr>
+
+				</div>
+			{{/each}}											
+			</div>
+			<div class="add-task-button">+ Add task</div>
+		</div>
+		{{/each}}
+</script>
+
+<script id="note-template", type="text/x-handlebars-template">
+	{{#each notes}}
+		<p class="comment"><span class="commenter">{{user_id}}</span> {{content}}</p>
+	{{/each}}		
+</script>
+
 <script>
 
 	$(document).ready(function() {
@@ -23,7 +60,6 @@
 	});
 
 	$(document).ready(function() {
-	$('.note-box').hide();
 	$('.task-name').click(function() {
 		$('.note-box').slideToggle("slow", function() {
 
@@ -31,37 +67,19 @@
 	});
 	});
 
-</script>
+	function retrieveComments(obj) {
+		console.log(obj);
+		$.ajax({
+			dataType: "json",
+			url: `/tasks/1`,
+			success: function(data) {
+				var source = document.getElementById("note-template").innerHTML;
+				var template = Handlebars.compile(source);
+				var result = template(data);
+				console.log(result);
+				$('.note-box').html(result)
+			}
+		});
+	}
 
-<script id="item-template", type="text/x-handlebars-template">
-	{{#each this}}
-		<div class="grid-item">
-			<div class="project-name">
-				<h2>{{name}}</h2>
-			</div>
-			<div class="task-box">
-			{{#each tasks}}
-				<div class="task">
-					<div class="task-name">
-						<h3>{{name}}</h3>
-						<h4>{{due_date}}</h4>
-					</div>
-					<div class="marker"><%= image_tag("edit.png") %></div>
-					<div class="marker"><%= image_tag(("check.png"), :class => "check") %></div>
-					<div class="marker"><%= image_tag("x.png") %></div>
-				</div>
-
-				<div class="note-box">
-					<p class="comment"><span class="commenter">Jon:</span> I don't have time to work on this project right now.</p>
-					<p class="comment"><span class="commenter">Boss:</span> Make time.</p>
-					<p class="comment"><span class="commenter">Jon:</span> Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-						<input class="add-note" type="text" placeholder="Add Note"></input>
-					<hr>
-
-				</div>
-			{{/each}}											
-			</div>
-			<div class="add-task-button">+ Add task</div>
-		</div>
-		{{/each}}
 </script>
