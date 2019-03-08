@@ -5,7 +5,7 @@ class ProjectsController < ApplicationController
     @projects = current_user.projects
     respond_to do |format|
       format.html
-      format.json { render json: @projects, status: 200 }
+      format.json {render json: @projects, include: ['tasks', 'tasks.user']}
     end
    # @user = User.find_by_id(params[:user_id])
     #if @user && @user.id == current_user.id

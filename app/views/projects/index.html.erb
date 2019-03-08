@@ -9,6 +9,7 @@
 
 <script id="item-template", type="text/x-handlebars-template">
 	{{#each this}}
+
 		<div class="grid-item">
 			<div class="project-name">
 				<h2>{{name}}</h2>
@@ -26,9 +27,9 @@
 				</div>
 
 				<div class="note-box" id="{{id}}box">
+				<p class="assignee-box"><span>Assignee: {{user.email}} </span></p>
 					<div></div>
 					<input class="add-note" type="text" placeholder="Add Note"></input>
-					<hr>
 				</div>
 			{{/each}}
 			<div id="{{id}}new-task-form" class="new-task-form" onkeypress="addTask(this)">
@@ -52,6 +53,8 @@
 		<div class="task-name" id="{{id}}task" onClick="retrieveComments(this)">
 			<h3>{{name}}</h3>
 			<h4>{{due_date}}</h4>
+					<span class="assignee-box">Assignee: Jon</span>
+
 		</div>
 		<div class="marker"><%= image_tag("edit.png") %></div>
 		<div class="marker"><%= image_tag(("check.png"), :class => "check") %></div>
@@ -114,7 +117,6 @@
 		}
 
 		console.log(formData);
-		console.log(jQuery.isPlainObject(formData));
 		$.ajax({
 			type: "POST",
 			url: "/tasks",

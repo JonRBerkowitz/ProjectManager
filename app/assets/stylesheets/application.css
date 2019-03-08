@@ -197,16 +197,24 @@
     height: 35px;
     border: none;
     border-top: 1px solid #ccc;
+    border-bottom: 1px solid #878787;
     margin: 18px 0 0 0;
+    background-color: #fff;
   }
 
-  .assignee {
+  .assignee-box {
     font-weight: bold;
-    font-size: .7em;
-    padding-left: 20px;
-    padding-right: 20px;
-    flex: 1;
+    font-size: .75em;
+    padding: 5px 0 5px 0;
+    width: 100%;
+    margin: 0;
+    border-bottom: 1px solid #ccc;
+    background-color: #EDEDED;
+    color: #545454;
+  }
 
+  .assignee-box span {
+    margin-left: 20px;
   }
 
  .flex-login-bg {
@@ -222,7 +230,6 @@
  .flex-login {
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 6px;
-
  }
 
   .flex-login div {
