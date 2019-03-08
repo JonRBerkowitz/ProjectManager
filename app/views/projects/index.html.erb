@@ -29,11 +29,14 @@
 					<div></div>
 					<input class="add-note" type="text" placeholder="Add Note"></input>
 					<hr>
-
 				</div>
-			{{/each}}											
+			{{/each}}
+			<div id="{{id}}new-task-form" class="new-task-form" onkeypress="addTask(this)">
+				<input type="text" placeholder="New Task" class="new-task" id="{{id}}task-name"></input>
+				<span class="new-task-date">Due Date:<input type="date" class="new-date" id="{{id}}task-date"></input></span>
+			</div>										
 			</div>
-			<div class="add-task-button">+ Add task</div>
+			<div class="add-task-button" id="{{id}}add-task" onClick="showTaskForm(this)">+ Add task</div>
 		</div>
 		{{/each}}
 </script>
@@ -42,6 +45,24 @@
 	{{#each notes}}
 		<p class="comment"><span class="commenter">{{user_id}}:</span> {{content}}</p>
 	{{/each}}		
+</script>
+
+<script id="new-task-template", type="text/x-handlebars-template">
+	<div class="task">
+		<div class="task-name" id="{{id}}task" onClick="retrieveComments(this)">
+			<h3>{{name}}</h3>
+			<h4>{{due_date}}</h4>
+		</div>
+		<div class="marker"><%= image_tag("edit.png") %></div>
+		<div class="marker"><%= image_tag(("check.png"), :class => "check") %></div>
+		<div class="marker"><%= image_tag("x.png") %></div>
+	</div>
+
+	<div class="note-box" id="{{id}}box">
+		<div></div>
+		<input class="add-note" type="text" placeholder="Add Note"></input>
+		<hr>
+	</div>		
 </script>
 
 <script>
@@ -54,9 +75,9 @@
 				var source = document.getElementById("item-template").innerHTML;
 				var template = Handlebars.compile(source);
 				var result = template(data);
-				console.log(data);
 				$('.grid-row').prepend(result);
 				$('.note-box').hide();
+				$('.new-task-form').hide();
 			}
 		});
 	});
@@ -69,12 +90,40 @@
 				var source = document.getElementById("note-template").innerHTML;
 				var template = Handlebars.compile(source);
 				var result = template(data);
-				console.log(data);
 				$(` #${data.id}box div `).html(result);
 				$(` #${data.id}box `).slideToggle("slow", function() {	
 				});
 			}
 		});
+	}
+
+	function showTaskForm(obj) {
+		let id = parseInt(obj.id);
+	$(` #${id}new-task-form `).slideToggle("slow", function() {});
+	}
+
+	function addTask(obj) {
+		if (event.code == "Enter") {
+
+		let id = parseInt(obj.id);
+		var formData = {
+			name: $(`#${id}task-name`).val(),
+			due_date: $(`#${id}task-date`).val(),
+			user_id : 1,
+			project_id: id
+		}
+
+		console.log(formData);
+		console.log(jQuery.isPlainObject(formData));
+		$.ajax({
+			type: "POST",
+			url: "/tasks",
+			data: formData,
+			success: function(data) {
+				console.log(data);
+			}
+		});
+		}	
 	}
 
 </script>

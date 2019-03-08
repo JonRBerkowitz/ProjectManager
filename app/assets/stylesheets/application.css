@@ -80,6 +80,51 @@
     border-bottom: 1px solid #ccc;
   }
 
+  ::placeholder {
+    font-weight: bold;
+    color: #6D6D6D;
+  }
+
+  .new-task {
+    border: none;
+    font-size: 1.1em;
+    padding-left: 20px;
+    flex: 2;
+    margin-bottom: -5px;
+    outline: none;
+    font-weight: bold;
+    color: #6D6D6D;
+    background-color: #EDEDED;
+  }
+
+  .new-task-form {
+    height: 58px;
+    display: flex;
+    flex-direction: column;
+    border: none;
+  }
+
+  .new-task-date{
+    flex: 1;
+    padding-left: 20px;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    color: #6D6D6D;
+    font-size: .8em;
+    font-family: 'Overpass', sans-serif;
+    font-weight: bold;
+    margin-top: -10px;
+    padding-bottom: 5px;
+    background-color: #EDEDED;
+  }
+
+  .new-task-date input{
+    padding-left: 5px;
+    border: none;
+    color: #6D6D6D;
+    background-color: #EDEDED;
+  }
+
   .task-box {
     height: 290px;
     border-bottom: 1px solid #ccc;
