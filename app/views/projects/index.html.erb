@@ -44,7 +44,7 @@
 
 <script id="note-template", type="text/x-handlebars-template">
 	{{#each notes}}
-		<p class="comment"><span class="commenter">{{user_id}}:</span> {{content}}</p>
+		<p class="comment"><span class="commenter">{{user.email}}:</span> {{content}}</p>
 	{{/each}}		
 </script>
 
@@ -90,6 +90,7 @@
 			dataType: "json",
 			url: `/tasks/${parseInt(obj.id)}`,
 			success: function(data) {
+				console.log(data);
 				var source = document.getElementById("note-template").innerHTML;
 				var template = Handlebars.compile(source);
 				var result = template(data);

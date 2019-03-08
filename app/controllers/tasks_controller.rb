@@ -28,7 +28,8 @@ class TasksController < ApplicationController
 
   def show
     @task = Task.find_by_id(params[:id])
-    render json: @task, status: 200
+    render json: @task, include: ['notes', 'notes.user']
+
   end
 
   def update
