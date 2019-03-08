@@ -90,32 +90,30 @@
     font-size: 1.1em;
     padding-left: 20px;
     flex: 2;
-    margin-bottom: -5px;
     outline: none;
     font-weight: bold;
     color: #6D6D6D;
     background-color: #EDEDED;
+    margin-bottom: -10px;
   }
 
   .new-task-form {
-    height: 58px;
+    height: 90px;
     display: flex;
     flex-direction: column;
-    border: none;
+    border-bottom: 1px solid #ccc;
   }
 
   .new-task-date{
     flex: 1;
     padding-left: 20px;
     border: none;
-    border-bottom: 1px solid #ccc;
     color: #6D6D6D;
     font-size: .8em;
     font-family: 'Overpass', sans-serif;
     font-weight: bold;
-    margin-top: -10px;
-    padding-bottom: 5px;
     background-color: #EDEDED;
+    font-size: .7em;
   }
 
   .new-task-date input{
@@ -134,13 +132,13 @@
   .task-name {
     flex: 3;
     padding-left: 20px;
-    height: 58px;
+    height: 75px;
   }
 
   .task h3 {
     font-size: 1.1em;
     flex: 3;
-    margin-top: 12px;
+    margin-top: 19px;
   }
 
   .task h4 {
@@ -215,6 +213,12 @@
 
   .assignee-box span {
     margin-left: 20px;
+  }
+
+  select {
+    background-color: #EDEDED;
+    border: none;
+    width: 88%;
   }
 
  .flex-login-bg {

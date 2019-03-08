@@ -2,6 +2,7 @@ class ProjectsController < ApplicationController
   before_action :authentication_required
 
   def index
+    @users = User.all
     @projects = current_user.projects.uniq
     respond_to do |format|
       format.html
