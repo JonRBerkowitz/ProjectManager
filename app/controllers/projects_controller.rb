@@ -2,7 +2,7 @@ class ProjectsController < ApplicationController
   before_action :authentication_required
 
   def index
-    @projects = current_user.projects
+    @projects = current_user.projects.uniq
     respond_to do |format|
       format.html
       format.json {render json: @projects, include: ['tasks', 'tasks.user']}

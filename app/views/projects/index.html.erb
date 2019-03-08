@@ -53,19 +53,17 @@
 		<div class="task-name" id="{{id}}task" onClick="retrieveComments(this)">
 			<h3>{{name}}</h3>
 			<h4>{{due_date}}</h4>
-					<span class="assignee-box">Assignee: Jon</span>
-
 		</div>
 		<div class="marker"><%= image_tag("edit.png") %></div>
 		<div class="marker"><%= image_tag(("check.png"), :class => "check") %></div>
 		<div class="marker"><%= image_tag("x.png") %></div>
 	</div>
 
-	<div class="note-box" id="{{id}}box">
-		<div></div>
-		<input class="add-note" type="text" placeholder="Add Note"></input>
-		<hr>
-	</div>		
+<div class="note-box" id="{{id}}box">
+				<p class="assignee-box"><span>Assignee: {{user.email}} </span></p>
+					<div></div>
+					<input class="add-note" type="text" placeholder="Add Note"></input>
+				</div>	
 </script>
 
 <script>
@@ -90,7 +88,6 @@
 			dataType: "json",
 			url: `/tasks/${parseInt(obj.id)}`,
 			success: function(data) {
-				console.log(data);
 				var source = document.getElementById("note-template").innerHTML;
 				var template = Handlebars.compile(source);
 				var result = template(data);
@@ -123,7 +120,13 @@
 			url: "/tasks",
 			data: formData,
 			success: function(data) {
-				console.log(data);
+				var source = document.getElementById("new-task-template").innerHTML;
+				var template = Handlebars.compile(source);
+				var result = template(data);
+
+				$('.task-box').append(result);
+				$('.note-box').hide();
+
 			}
 		});
 		}	
