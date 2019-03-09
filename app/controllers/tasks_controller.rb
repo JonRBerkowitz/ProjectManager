@@ -29,7 +29,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     @task.update(task_params)
-    single_user?
+    render json: @task
   end
 
   def single_user?
@@ -43,7 +43,7 @@ class TasksController < ApplicationController
   private
 
   def task_params
-    params.permit(:name, :done, :project_id, :user_id, :due_date, notes_attributes: [:task_id, :user_id, :content,])
+    params.permit(:name, :done, :project_id, :user_id, :due_date, :id, notes_attributes: [:task_id, :user_id, :content,])
   end
 
 end

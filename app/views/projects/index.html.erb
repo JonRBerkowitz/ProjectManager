@@ -35,12 +35,12 @@
 
 <script id="new-task-template", type="text/x-handlebars-template">
 	<div class="task" id={{id}}task-container>
-		<div class="task-name" id="{{id}}task" onClick="retrieveComments(this)">
+		<div class="task-name {{#if done}}done{{/if}}" id="{{id}}task" onClick="retrieveComments(this)">
 			<h3>{{name}}</h3>
 			<h4>{{due_date}}</h4>
 		</div>
 		<div class="marker"><%= image_tag("edit.png") %></div>
-		<div class="marker"><%= image_tag(("check.png"), :class => "check") %></div>
+		<div class="marker" data-status="{{done}}" data-id={{id}} onClick="setTaskStatus(this)"><%= image_tag(("check.png"), :class => "check") %></div>
 		<div class="marker" id="{{id}}delete" onClick="deleteTask(this)"><%= image_tag("x.png") %></div>
 	</div>
 
@@ -136,6 +136,22 @@
 				$(`#${id}task-container`).remove();
 			}
 		});
+	}
+
+	function setTaskStatus(obj) {
+		let id = obj.getAttribute('data-id');
+		let status = { done: !JSON.parse(obj.getAttribute('data-status')) }
+		console.log(status);
+		$.ajax({
+			type: "PATCH",
+			url: `/tasks/${id}`,
+			data: status,
+			success: function(data) {
+				console.log(data);
+				$(`#${id}task`).toggleClass('done');
+			}
+		});
+
 	}
 
 </script>

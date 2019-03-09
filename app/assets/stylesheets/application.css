@@ -26,6 +26,11 @@
     margin: 0;
   }
 
+  .done {
+    text-decoration: line-through;
+    color: #ccc;
+  }
+
   .container {
     width: 100%;
     margin: 0 auto;
