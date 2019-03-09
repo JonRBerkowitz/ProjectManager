@@ -9,38 +9,22 @@
 
 <script id="item-template", type="text/x-handlebars-template">
 	{{#each this}}
-
 		<div class="grid-item">
 			<div class="project-name">
 				<h2>{{name}}</h2>
 			</div>
-			<div class="task-box">
-			{{#each tasks}}
-				<div class="task">
-					<div class="task-name" id="{{id}}task" onClick="retrieveComments(this)">
-						<h3>{{name}}</h3>
-						<h4>{{due_date}}</h4>
-					</div>
-					<div class="marker"><%= image_tag("edit.png") %></div>
-					<div class="marker"><%= image_tag(("check.png"), :class => "check") %></div>
-					<div class="marker"><%= image_tag("x.png") %></div>
-				</div>
 
-				<div class="note-box" id="{{id}}box">
-				<p class="assignee-box"><span>Assignee: {{user.email}} </span></p>
-					<div></div>
-					<input class="add-note" type="text" placeholder="Add Note"></input>
-				</div>
-			{{/each}}
-			<div id="{{id}}new-task-form" class="new-task-form" onkeypress="addTask(this)">
-				<input type="text" placeholder="New Task" class="new-task" id="{{id}}task-name"></input>
-				<span class="new-task-date">Due Date:<input type="date" class="new-date" id="{{id}}task-date"></input></span>
-				<span class="new-task-date">Assignee: <%= select_tag "user", options_from_collection_for_select(@users, :id, :email) %></span>
-			</div>										
+			<div class="task-box" id="{{id}}task-box">
+				{{#each tasks}}
+					{{> taskPartial}}
+				{{/each}}					
 			</div>
-			<div class="add-task-button" id="{{id}}add-task" onClick="showTaskForm(this)">+ Add task</div>
+			{{> createTaskPartial}}
+			<div class="add-task-button" id="{{id}}add-task" onClick="showTaskForm(this)">
+				+ Add task
+			</div>
 		</div>
-		{{/each}}
+	{{/each}}
 </script>
 
 <script id="note-template", type="text/x-handlebars-template">
@@ -60,14 +44,25 @@
 		<div class="marker"><%= image_tag("x.png") %></div>
 	</div>
 
-<div class="note-box" id="{{id}}box">
-				<p class="assignee-box"><span>Assignee: {{user.email}} </span></p>
-					<div></div>
-					<input class="add-note" type="text" placeholder="Add Note"></input>
-				</div>	
+	<div class="note-box" id="{{id}}box">
+		<p class="assignee-box"><span>Assignee: {{user.email}} </span></p>
+		<div></div>
+		<input class="add-note" type="text" placeholder="Add Note"></input>
+	</div>	
+</script>
+
+<script id="create-task-template", type="text/x-handlebars-template">
+	<div id="{{id}}new-task-form" class="new-task-form" onkeypress="addTask(this)">
+		<input type="text" placeholder="New Task" class="new-task" id="{{id}}task-name"></input>
+		<span class="new-task-date">Due Date:<input type="date" class="new-date" id="{{id}}task-date"></input></span>
+		<span class="new-task-date">Assignee: <%= select_tag "user", options_from_collection_for_select(@users, :id, :email) %></span>
+	</div>		
 </script>
 
 <script>
+
+	Handlebars.registerPartial('taskPartial',  document.getElementById("new-task-template").innerHTML)
+	Handlebars.registerPartial('createTaskPartial',  document.getElementById("create-task-template").innerHTML)
 
 	$(document).ready(function() {
 		$.ajax({
@@ -101,7 +96,7 @@
 
 	function showTaskForm(obj) {
 		let id = parseInt(obj.id);
-	$(` #${id}new-task-form `).slideToggle("slow", function() {});
+		$(`#${id}new-task-form`).toggle();
 	}
 
 	function addTask(obj) {
@@ -113,8 +108,7 @@
 			user_id : obj.querySelector('option:checked').value,
 			project_id: id
 		}
-
-		console.log(formData);
+		console.log(obj);
 		$.ajax({
 			type: "POST",
 			url: "/tasks",
@@ -124,12 +118,16 @@
 				var template = Handlebars.compile(source);
 				var result = template(data);
 
-				$('.task-box').append(result);
+				$(`#${id}task-box`).append(result);
 				$('.note-box').hide();
-
+				$('.new-task-form').hide();
 			}
 		});
 		}	
+	}
+
+	function deleteTask(obj) {
+		console.log(parseInt(obj.id));
 	}
 
 </script>
