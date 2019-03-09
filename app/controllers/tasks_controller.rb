@@ -18,18 +18,12 @@ class TasksController < ApplicationController
 
   def destroy
     @task = Task.find(params[:id])
-    @project = Project.find_by_id(@task.project_id)
     @task.destroy
-    if @project.tasks.empty?
-      @project.destroy
-    end
-    single_user?
   end
 
   def show
     @task = Task.find_by_id(params[:id])
     render json: @task, include: ['notes', 'notes.user']
-
   end
 
   def update

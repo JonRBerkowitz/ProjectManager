@@ -34,14 +34,14 @@
 </script>
 
 <script id="new-task-template", type="text/x-handlebars-template">
-	<div class="task">
+	<div class="task" id={{id}}task-container>
 		<div class="task-name" id="{{id}}task" onClick="retrieveComments(this)">
 			<h3>{{name}}</h3>
 			<h4>{{due_date}}</h4>
 		</div>
 		<div class="marker"><%= image_tag("edit.png") %></div>
 		<div class="marker"><%= image_tag(("check.png"), :class => "check") %></div>
-		<div class="marker"><%= image_tag("x.png") %></div>
+		<div class="marker" id="{{id}}delete" onClick="deleteTask(this)"><%= image_tag("x.png") %></div>
 	</div>
 
 	<div class="note-box" id="{{id}}box">
@@ -127,7 +127,15 @@
 	}
 
 	function deleteTask(obj) {
-		console.log(parseInt(obj.id));
+		let id = parseInt(obj.id);
+		console.log(id);
+		$.ajax({
+			type: "DELETE",
+			url: `/tasks/${id}`,
+			success: function() {
+				$(`#${id}task-container`).remove();
+			}
+		});
 	}
 
 </script>
