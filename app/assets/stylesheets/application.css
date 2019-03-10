@@ -14,11 +14,13 @@
  *= require_self
  */
 
+
+
 .wrapper, html, body {
     height: 100%;
     margin: 0;
     font-family: 'Overpass', sans-serif;
-    background-color: #fff;
+    background-color: #C1C1C1;
     color: #283238;
 }
 
@@ -27,9 +29,50 @@
     margin: 0;
   }
 
-  #create-project {
+  .nav {
     color: #6D6D6D;
-    background-color: #EDEDED;
+    background-color: #fff;
+    font-weight: bold;
+    text-align: center;
+    padding: 14px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    display: fixed;
+    border-bottom: 1px solid #ccc;
+  }
+
+  #nav-box {
+    display: flex;
+    flex-direction: row;
+  }
+
+
+  #nav1 {
+    text-decoration: none;
+    padding-right: 10px;
+    flex: 18;
+    padding-left: 100px;
+  }
+
+  #nav2 {
+    padding-right: 2%;
+    flex: 1;
+  }
+
+  #nav-box a {
+    text-decoration: none;
+    padding-right: 10px;
+    color: #5C6672;
+  }
+
+  #nav-box a:hover {
+    text-decoration: underline;
+  }
+
+  #create-project {
+    color: #fff;
+    background-color: #5C6672;
     font-weight: bold;
     text-align: center;
     padding: 14px 0;
@@ -40,8 +83,7 @@
   }
 
   #create-project:hover {
-    color: #fff;
-    background-color: #5C6672;
+    background-color: #495259;
   }  
 
   .done {
@@ -56,7 +98,7 @@
 
   .grid-row {
     padding: 30px 0 0 30px;
-    margin: 40px auto;
+    margin: 80px auto;
     width: 90%;
     max-width: 1400px;
     min-width: 350px;
@@ -67,11 +109,11 @@
   .grid-item {
     height: 450px;
     width: calc((100% / 3) - 30px);
-    border: 1px solid #ccc;
+    border: 1px solid #B2B2B2;
     box-sizing: border-box;
     margin-bottom: 30px;
     margin-right: 30px;
-    border-radius: 7px;
+    border-radius: 9px;
     background-color: #fff;
     display: flex;
     flex-direction: column;
@@ -94,6 +136,7 @@
 
   .project-name img{
     padding-top: 15px;
+    mix-blend-mode: multiply;
   }
 
   @media(max-width: 1100px) {
@@ -113,6 +156,11 @@
     align-items: center;
     height: 58px;
     border-bottom: 1px solid #ccc;
+    cursor: pointer;
+  }
+
+  .task:hover {
+    background-color: #F3F4F4;
   }
 
   ::placeholder {
@@ -196,6 +244,9 @@
     color: #fff;
   }
 
+  .add-task-button:hover {
+    background-color: #495259;
+  }  
   .marker {
     margin-top: 6px;
   }
@@ -233,7 +284,7 @@
     border-top: 1px solid #ccc;
     border-bottom: 1px solid #878787;
     margin: 18px 0 0 0;
-    background-color: #fff;
+    background-color: #EDEDED;
   }
 
   .assignee-box {
