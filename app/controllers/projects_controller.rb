@@ -2,22 +2,13 @@ class ProjectsController < ApplicationController
   before_action :authentication_required
 
   def index
+    @user = current_user
     @users = User.all
     @projects = current_user.projects.uniq
     respond_to do |format|
       format.html
       format.json {render json: @projects, include: ['tasks', 'tasks.user']}
     end
-   # @user = User.find_by_id(params[:user_id])
-    #if @user && @user.id == current_user.id
-     # @your = "Your"
-      #@projects = @user.projects
-      #flash[:edit_task] = "USER"
-    #else
-     # @projects = Project.all
-      #flash[:edit_task] = "ALL"
-    #end
-    #@user = current_user
   end
 
   def overdue

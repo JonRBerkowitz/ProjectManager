@@ -6,6 +6,7 @@
 	<div class="grid-row"></div>
 </div>
 
+<input type='hidden' id='uid' value="<%=@user.id%>"></input>
 
 <script id="item-template", type="text/x-handlebars-template">
 	{{#each this}}
@@ -33,6 +34,10 @@
 	{{/each}}		
 </script>
 
+<script id="new-note-template", type="text/x-handlebars-template">
+	<p class="comment"><span class="commenter">{{user.email}}:</span> {{content}}</p>
+</script>
+
 <script id="new-task-template", type="text/x-handlebars-template">
 	<div class="task" id={{id}}task-container>
 		<div class="task-name {{#if done}}done{{/if}}" id="{{id}}task" onClick="retrieveComments(this)">
@@ -46,8 +51,12 @@
 
 	<div class="note-box" id="{{id}}box">
 		<p class="assignee-box"><span>Assignee: {{user.email}} </span></p>
-		<div></div>
-		<input class="add-note" type="text" placeholder="Add Note"></input>
+		<div>
+			{{#each notes}}
+				{{> notePartial}}
+			{{/each}}
+		</div>
+		<input class="add-note" data-id="{{id}}" type="text" placeholder="Add Note" onkeypress="addNote(this)"></input>
 	</div>	
 </script>
 
@@ -153,5 +162,7 @@
 		});
 
 	}
+
+
 
 </script>
