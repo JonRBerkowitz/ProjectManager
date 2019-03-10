@@ -1,31 +1,33 @@
-<div class="row">
-  <span class="text-center headline"><%= @your %> Projects</span>
-</div>
-
 <div class="container">
 	<div class="grid-row"></div>
 </div>
 
 <input type='hidden' id='uid' value="<%=@user.id%>"></input>
 
+<div id="create-project" onClick="addProject()">+ Add Project</div>
+
 <script id="item-template", type="text/x-handlebars-template">
 	{{#each this}}
-		<div class="grid-item">
-			<div class="project-name">
-				<h2>{{name}}</h2>
-			</div>
-
-			<div class="task-box" id="{{id}}task-box">
-				{{#each tasks}}
-					{{> taskPartial}}
-				{{/each}}					
-			</div>
-			{{> createTaskPartial}}
-			<div class="add-task-button" id="{{id}}add-task" onClick="showTaskForm(this)">
-				+ Add task
-			</div>
-		</div>
+		{{> createItemPartial}}
 	{{/each}}
+</script>
+
+<script id="new-item-template", type="text/x-handlebars-template">
+	<div class="grid-item">
+	<div class="project-name">
+		<h2>{{name}}</h2>
+	</div>
+
+	<div class="task-box" id="{{id}}task-box">
+		{{#each tasks}}
+			{{> taskPartial}}
+		{{/each}}					
+	</div>
+	{{> createTaskPartial}}
+	<div class="add-task-button" id="{{id}}add-task" onClick="showTaskForm(this)">
+		+ Add task
+	</div>
+	</div>
 </script>
 
 <script id="note-template", type="text/x-handlebars-template">
@@ -72,6 +74,7 @@
 
 	Handlebars.registerPartial('taskPartial',  document.getElementById("new-task-template").innerHTML)
 	Handlebars.registerPartial('createTaskPartial',  document.getElementById("create-task-template").innerHTML)
+	Handlebars.registerPartial('createItemPartial',  document.getElementById("new-item-template").innerHTML)
 
 	$(document).ready(function() {
 		$.ajax({
@@ -133,6 +136,22 @@
 			}
 		});
 		}	
+	}
+
+	function addProject() {
+		$.ajax({
+			type: "POST",
+			url: "/projects",
+			data: {name: "New Project"},
+			success: function(data) {
+				var source = document.getElementById("new-item-template").innerHTML;
+				var template = Handlebars.compile(source);
+				var result = template(data);
+
+				$('.grid-row').append(result);
+				$('.new-task-form').hide();
+			}
+		});
 	}
 
 	function deleteTask(obj) {

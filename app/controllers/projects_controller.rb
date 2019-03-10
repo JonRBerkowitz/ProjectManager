@@ -4,7 +4,7 @@ class ProjectsController < ApplicationController
   def index
     @user = current_user
     @users = User.all
-    @projects = current_user.projects.uniq
+    @projects = Project.all.uniq
     respond_to do |format|
       format.html
       format.json {render json: @projects, include: ['tasks', 'tasks.user']}
@@ -26,17 +26,8 @@ class ProjectsController < ApplicationController
   end
 
   def create
-    @project = Project.new(project_params)
-      if @project.save
-        if (params[:commit]) == "Save"
-          redirect_to user_projects_path
-        elsif (params[:commit]) == "Add Task"
-          flash[:add] = "ADD"
-          redirect_to edit_user_project_path(current_user, @project)
-        end
-      else
-        render :new
-      end
+    project = Project.create(project_params)
+    render json: project, status: 201
   end
 
   def edit
@@ -83,7 +74,7 @@ class ProjectsController < ApplicationController
   private
 
   def project_params
-    params.require(:project).permit(:name, tasks_attributes: [:user_id, :project_id, :name, :done, :id, :due_date,])
+    params.permit(:name, tasks_attributes: [:user_id, :project_id, :name, :done, :id, :due_date,])
   end
 
 end

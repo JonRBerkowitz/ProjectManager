@@ -26,6 +26,23 @@
     margin: 0;
   }
 
+  #create-project {
+    color: #6D6D6D;
+    background-color: #EDEDED;
+    font-weight: bold;
+    text-align: center;
+    padding: 14px 0;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    cursor: pointer;
+  }
+
+  #create-project:hover {
+    color: #fff;
+    background-color: #5C6672;
+  }  
+
   .done {
     text-decoration: line-through;
     color: #ccc;
