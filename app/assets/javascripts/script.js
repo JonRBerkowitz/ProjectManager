@@ -19,3 +19,15 @@ function addNote(obj) {
 		});
 	}
 }
+
+function deleteProject(obj) {
+	let id = parseInt(obj.id);
+	console.log(id);
+	$.ajax({
+		type: "DELETE",
+		url: `/projects/${id}`,
+		success: function() {
+			$(`#${id}grid-item`).remove();
+		}
+	});
+}

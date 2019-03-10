@@ -13,9 +13,11 @@
 </script>
 
 <script id="new-item-template", type="text/x-handlebars-template">
-	<div class="grid-item">
+	<div class="grid-item" id="{{id}}grid-item">
 	<div class="project-name">
 		<h2>{{name}}</h2>
+		<div class="marker"><%= image_tag("edit.png") %></div>
+		<div class="marker" id="{{id}}delete" onClick="deleteProject(this)"><%= image_tag("x.png") %></div>
 	</div>
 
 	<div class="task-box" id="{{id}}task-box">
