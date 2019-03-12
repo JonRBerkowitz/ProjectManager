@@ -43,9 +43,13 @@ function displayEditProjectName(obj) {
 }
 
 function editProjectName(obj) {
-	let id = $(obj).data("id")
-
 	if (event.code == "Enter") {
+		saveProjectName(obj);	
+	}	
+}
+
+function saveProjectName(obj) {
+	let id = $(obj).data("id")
 
 	input = $(`.project-name-input[data-id=${id}]`).val();
 
@@ -62,6 +66,4 @@ function editProjectName(obj) {
 				$(`h2[data-id=${id}]`).text(input);
 			}
 		});
-		
-	}	
 }
