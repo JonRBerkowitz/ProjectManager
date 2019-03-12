@@ -31,3 +31,37 @@ function deleteProject(obj) {
 		}
 	});
 }
+
+function displayEditProjectName(obj) {
+	let id = $(obj).data("id")
+
+	console.log($(`#${id}delete`));
+
+	$(obj).hide();
+	$(`#${id}delete`).hide();
+	$(`.project-name-input[data-id=${id}]`).show();
+}
+
+function editProjectName(obj) {
+	let id = $(obj).data("id")
+
+	if (event.code == "Enter") {
+
+	input = $(`.project-name-input[data-id=${id}]`).val();
+
+	formData = { name: input }
+
+	$.ajax({
+			type: "PATCH",
+			url: `/projects/${id}`,
+			data: formData,
+			success: function(data) {
+				$(obj).hide();
+				$(`#${id}delete`).show();
+				$(`h2[data-id=${id}]`).show();
+				$(`h2[data-id=${id}]`).text(input);
+			}
+		});
+		
+	}	
+}

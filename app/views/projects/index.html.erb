@@ -15,8 +15,8 @@
 <script id="new-item-template", type="text/x-handlebars-template">
 	<div class="grid-item" id="{{id}}grid-item">
 	<div class="project-name">
-		<h2 contenteditable="true">{{name}}</h2>
-		<div class="marker"><%= image_tag("edit.png") %></div>
+		<h2 onClick="displayEditProjectName(this)" data-id="{{id}}">{{name}}</h2>
+		<input class="project-name-input" data-id="{{id}}" value="{{name}}" autofocus onkeypress="editProjectName(this)" maxlength="20" placeholder="Enter Project Name"></input>
 		<div class="marker" id="{{id}}delete" onClick="deleteProject(this)"><%= image_tag("x.png") %></div>
 	</div>
 
@@ -89,6 +89,7 @@
 				$('.grid-row').prepend(result);
 				$('.note-box').hide();
 				$('.new-task-form').hide();
+				$('.project-name-input').hide();
 			}
 		});
 	});
@@ -152,6 +153,7 @@
 
 				$('.grid-row').append(result);
 				$('.new-task-form').hide();
+				$('.project-name-input').hide();
 			}
 		});
 	}

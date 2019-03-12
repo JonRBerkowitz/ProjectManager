@@ -31,10 +31,8 @@ class ProjectsController < ApplicationController
   end
 
   def edit
-    @project = Project.find(params[:id])
-    if flash[:add] == "ADD"
-    build_task
-    end
+    project = Project.find(params[:id])
+    render json: project, status: 201
   end
 
   def update
