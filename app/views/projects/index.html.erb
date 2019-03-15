@@ -46,6 +46,7 @@
 	<div class="task" id={{id}}task-container>
 		<div class="task-name {{#if done}}done{{/if}}" id="{{id}}task" onClick="retrieveComments(this)">
 			<h3>{{name}}</h3>
+			<p class="assignee-box">Assignee: {{user.email}} </p>
 			<h4>{{due_date}}</h4>
 		</div>
 		<div class="marker"><%= image_tag("edit.png") %></div>
@@ -54,7 +55,6 @@
 	</div>
 
 	<div class="note-box" id="{{id}}box">
-		<p class="assignee-box"><span>Assignee: {{user.email}} </span></p>
 		<div>
 			{{#each notes}}
 				{{> notePartial}}
