@@ -32,6 +32,13 @@ function deleteProject(obj) {
 	});
 }
 
+function editTask(obj) {
+	let id = $(obj).data("id")
+	console.log(obj);
+	$(`#${id}task-container`).hide();
+	$(`#${id}edit-task-container`).show();
+}
+
 function displayEditProjectName(obj) {
 	let id = $(obj).data("id")
 
