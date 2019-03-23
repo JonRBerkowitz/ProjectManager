@@ -26,11 +26,11 @@
 		{{/each}}					
 	</div>
 	{{> createTaskPartial}}
-	<div class="add-task-button" id="{{id}}add-task" onClick="showTaskForm(this)">
+	<div class="add-task-button add-task" id="{{id}}add-task" onClick="showTaskForm(this)">
 		+ Add task
 	</div>
-	<div class="add-task-button save-button" id="{{id}}save" onClick="">
-		Save
+	<div class="add-task-button save-button" id="{{id}}save" onClick="saveTask()">
+		Save Task
 	</div>
 	</div>
 </script>
@@ -46,7 +46,7 @@
 </script>
 
 <script id="new-task-template", type="text/x-handlebars-template">
-	<div class="task" id="{{id}}task-container">
+	<div class="task current-task" id="{{id}}task-container">
 		<div class="task-name {{#if done}}done{{/if}}" id="{{id}}task" onClick="retrieveComments(this)">
 			<div id="{{id}}inner-task-container">
 				<h3>{{name}}</h3>
@@ -54,20 +54,20 @@
 				<h4>Due: {{due_date}}</h4>
 			</div>
 		</div>
-		<div class="marker {{id}}marker" data-id={{id}} onClick="editTask(this)"><%= image_tag("edit.png") %></div>
+		<div class="marker {{id}}marker" data-id={{id}} data-project-id="{{project_id}}" onClick="editTask(this)"><%= image_tag("edit.png") %></div>
 		<div class="marker {{id}}marker" data-status="{{done}}" data-id={{id}} onClick="setTaskStatus(this)"><%= image_tag(("check.png"), :class => "check") %></div>
 		<div class="marker {{id}}marker" id="{{id}}delete" onClick="deleteTask(this)"><%= image_tag("x.png") %></div>
 	</div>
 
-	<div class="task edit-task" id="{{id}}edit-task-container">
+	<div class="task edit-task" id="{{id}}edit-task-container" data-id={{id}}>
 		<div class="task-name {{#if done}}done{{/if}}" id="{{id}}task"">
-			<div id="{{id}}edit-task-container" class="edit-task-container">
+			<div id="{{id}}inner-edit-task-container" class="inner-edit-task-container" data-id={{id}}>
 				<input type="text" autofocus placeholder="Edit Task" class="edit-task-name" value="{{name}}" id="{{id}}edit-task-name"></input>
-				<span class="edit-task-date">Assignee: <%= select_tag "user", options_from_collection_for_select(@users, :id, :email) %></span><br>
-				<span class="edit-task-date">Due:<input type="date" class="new-date" id="{{id}}task-date"></input></span>
+				<span class="edit-task-date assignee">Assignee: <%= select_tag "user", options_from_collection_for_select(@users, :id, :email) %></span><br>
+				<span class="edit-task-date date">Due:<input type="date" class="new-date" id="{{id}}task-date" value="Date{{due_date}}"></input></span>
 			</div>
 		</div>
-		<div class="marker cancel-marker" id="{{id}}cancel-marker" onClick=""><%= image_tag("x.png") %></div>
+		<div class="marker cancel-marker" data-project-id="{{project-id}}" id="{{id}}cancel-marker" onClick=""><%= image_tag("x.png") %></div>
 	</div>
 
 	

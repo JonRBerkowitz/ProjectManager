@@ -1,3 +1,5 @@
+var currentTask = 0;
+
 function addNote(obj) {
 	if (event.code == "Enter") {
 		let input = obj.value;
@@ -33,10 +35,38 @@ function deleteProject(obj) {
 }
 
 function editTask(obj) {
-	let id = $(obj).data("id")
-	console.log(obj);
+	let id = $(obj).data("id");
+	currentTask = id;
+	let projectId = $(obj).data("project-id");
+	currentData = 
+
+	$(`.current-task`).show();
+	$(`.add-task`).show();
+	$(`.edit-task`).hide();
+	$(`.save-button`).hide();
+
 	$(`#${id}task-container`).hide();
 	$(`#${id}edit-task-container`).show();
+	$(`#${projectId}add-task`).hide();
+	$(`#${projectId}save`).show();
+}
+
+function saveTask() {
+	let name = $(`.inner-edit-task-container[data-id=${currentTask}] .edit-task-name`).val();
+	let assignee = $(`.inner-edit-task-container[data-id=${currentTask}] .assignee select`).val();
+	let date = $(`.inner-edit-task-container[data-id=${currentTask}] .date input`).val();
+
+	formData = { name: name, user_id: assignee, due_date: date };
+
+	$.ajax({
+		type: "PATCH",
+		url: `/tasks/${currentTask}`,
+		data: formData,
+		success: function(data) {
+
+		}
+	});
+
 }
 
 function displayEditProjectName(obj) {
