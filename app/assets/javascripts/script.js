@@ -55,6 +55,7 @@ function saveTask() {
 	let name = $(`.inner-edit-task-container[data-id=${currentTask}] .edit-task-name`).val();
 	let assignee = $(`.inner-edit-task-container[data-id=${currentTask}] .assignee select`).val();
 	let date = $(`.inner-edit-task-container[data-id=${currentTask}] .date input`).val();
+	let assigneeName = ($(`.inner-edit-task-container[data-id=${currentTask}] .assignee select option:selected`).text());
 
 	formData = { name: name, user_id: assignee, due_date: date };
 
@@ -63,7 +64,11 @@ function saveTask() {
 		url: `/tasks/${currentTask}`,
 		data: formData,
 		success: function(data) {
-
+			$(`#${currentTask}edit-task-container`).hide();
+			$(`#${currentTask}task-container`).show();
+			$(`#${currentTask}inner-task-container h3`).html(`${name}`);
+			$(`#${currentTask}inner-task-container p`).html(`Assignee: ${assigneeName}`);
+			$(`#${currentTask}inner-task-container h4`).html(`Due: ${date}`);
 		}
 	});
 
