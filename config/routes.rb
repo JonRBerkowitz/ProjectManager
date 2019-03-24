@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get '/signup', to: 'users#new'
   get '/projects/overdue', to: 'projects#overdue'
   get '/projects/finished', to: 'projects#finished'
-  resources :users, only: [:create, :destroy, :index] do
+  resources :users, only: [:show, :create, :destroy, :index] do
     resources :projects
   end
   resources :projects

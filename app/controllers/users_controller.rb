@@ -20,12 +20,15 @@ before_action :disable_nav, only:[:new, :create]
   end
 
   def show
-    @user = current_user
+    @user = User.find(params[:id])
+    render json: @user, status: 200 
   end
-end
+
 
 private
 
 def user_params
   params.require(:user).permit(:email, :password, :task)
+end
+
 end
