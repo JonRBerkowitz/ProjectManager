@@ -51,7 +51,7 @@
 			<div id="{{id}}inner-task-container">
 				<h3>{{name}}</h3>
 				<p class="assignee-box">Assignee: {{user.email}} </p>
-				<h4>Due: {{due_date}}</h4>
+				<h4>Due: {{#formatDate due_date}}{{/formatDate}}</h4>
 			</div>
 		</div>
 		<div class="marker {{id}}marker" data-id={{id}} data-project-id="{{project_id}}" onClick="editTask(this)"><%= image_tag("edit.png") %></div>
@@ -64,7 +64,7 @@
 			<div id="{{id}}inner-edit-task-container" class="inner-edit-task-container" data-id="{{id}}">
 				<input type="text" autofocus placeholder="Edit Task" class="edit-task-name" value="{{name}}" id="{{id}}edit-task-name"></input>
 				<span class="edit-task-date assignee">Assignee: <%= select_tag "user", options_from_collection_for_select(@users, :id, :email) %></span><br>
-				<span class="edit-task-date date">Due:<input type="date" class="new-date" id="{{id}}new-task-date"></input></span>
+				<span class="edit-task-date date">Due:<input type="date" class="new-date" id="{{id}}new-task-date" value="{{#formatDate due_date}}{{/formatDate}}"></input></span>
 			</div>
 		</div>
 		<div class="marker cancel-marker" data-project-id="{{project-id}}" id="{{id}}cancel-marker" onClick=""><%= image_tag("x.png") %></div>
@@ -86,7 +86,7 @@
 	<div id="{{id}}new-task-form" class="new-task-form" onkeypress="addTask(this)">
 		<input type="text" placeholder="New Task" class="new-task" id="{{id}}task-name"></input>
 		<span class="new-task-date">Assignee: <%= select_tag "user", options_from_collection_for_select(@users, :id, :email) %></span>
-		<span class="new-task-date">Due: <input type="date" class="new-date" id="{{id}}task-date"></input></span>
+		<span class="new-task-date">Due: <input type="date" class="new-date" id="{{id}}task-date" value="{{#today}}{{/today}}"></input></span>
 	</div>
 </script>
 
@@ -100,6 +100,15 @@
 		if (a != b) {
 			return "hide";
 		}
+	});
+
+	Handlebars.registerHelper('formatDate', function(date, options) {
+		return date.slice(0,10);
+	});
+
+	Handlebars.registerHelper('today', function(options) {
+		let d = new Date().toJSON().slice(0,10);
+		return d;
 	});
 
 	$(document).ready(function() {
