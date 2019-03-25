@@ -6,14 +6,4 @@ class Project < ApplicationRecord
 
   accepts_nested_attributes_for :tasks
 
-  def self.overdue
-    where("due_date < ?", Time.now)
-  end
-
-  def self.finished
-    Project.all.select do |project|
-      project.tasks.all? {|task| task.done == true}
-    end
-  end
-
 end

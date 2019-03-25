@@ -11,14 +11,6 @@ class ProjectsController < ApplicationController
     end
   end
 
-  def overdue
-    @projects = Project.overdue
-  end
-  
-  def finished
-    @projects = Project.finished
-  end
-
   def new
     @project = Project.new
   end
