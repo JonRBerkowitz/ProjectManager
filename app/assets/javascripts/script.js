@@ -189,6 +189,7 @@ function retrieveComments(obj) {
 				$('.grid-row').append(result);
 				$('.new-task-form').hide();
 				$('.project-name-input').hide();
+				$('.save-button').hide();
 			}
 		});
 	}
