@@ -4,8 +4,6 @@
 
 <input type='hidden' id='uid' value="<%=@user.id%>"></input>
 
-<div id="create-project" onClick="addProject()">+ Add Project</div>
-
 <script id="item-template", type="text/x-handlebars-template">
 	{{#each this}}
 		{{> createItemPartial}}
@@ -105,11 +103,13 @@
 	$(document).ready(function() {
 		$.ajax({
 			dataType: "json",
-			url: `/projects`,
+			url: `/projects/<%=@project.id%>`,
 			success: function(data) {
-				var source = document.getElementById("item-template").innerHTML;
+				console.log(data);
+				var source = document.getElementById("new-item-template").innerHTML;
 				var template = Handlebars.compile(source);
 				var result = template(data);
+				console.log(result);
 				$('.grid-row').prepend(result);
 				$('.note-box').hide();
 				$('.new-task-form').hide();

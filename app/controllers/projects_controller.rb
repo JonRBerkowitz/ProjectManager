@@ -15,6 +15,16 @@ class ProjectsController < ApplicationController
     @project = Project.new
   end
 
+  def show
+    @user = current_user
+    @users = User.all
+    @project = Project.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.json {render json: @project, include: ['tasks', 'tasks.user']}
+    end
+  end
+
   def create
     project = Project.create(project_params)
     render json: project, status: 201
