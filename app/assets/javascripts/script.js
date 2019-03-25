@@ -221,3 +221,14 @@ function retrieveComments(obj) {
 		});
 
 	}
+
+
+//Project Sort
+
+function myTasks(){
+	$('.hide').hide();
+}
+
+function allTasks(){
+	$('.current-task').show();
+}

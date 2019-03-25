@@ -46,7 +46,7 @@
 </script>
 
 <script id="new-task-template", type="text/x-handlebars-template">
-	<div class="task current-task" id="{{id}}task-container">
+	<div class="task current-task {{#if_eq user_id <%=@user.id%> }}{{/if_eq}}" id="{{id}}task-container"> 
 		<div class="task-name {{#if done}}done{{/if}}" id="{{id}}task" onClick="retrieveComments(this)">
 			<div id="{{id}}inner-task-container">
 				<h3>{{name}}</h3>
@@ -95,6 +95,12 @@
 	Handlebars.registerPartial('taskPartial',  document.getElementById("new-task-template").innerHTML)
 	Handlebars.registerPartial('createTaskPartial',  document.getElementById("create-task-template").innerHTML)
 	Handlebars.registerPartial('createItemPartial',  document.getElementById("new-item-template").innerHTML)
+
+	Handlebars.registerHelper('if_eq', function(a, b, options) {
+		if (a != b) {
+			return "hide";
+		}
+	});
 
 	$(document).ready(function() {
 		$.ajax({

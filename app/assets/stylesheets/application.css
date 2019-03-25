@@ -55,6 +55,15 @@
     padding-left: 100px;
   }
 
+  #nav1 span {
+    padding-right: 15px;
+  }
+
+  #nav1 span:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+
   #nav2 {
     padding-right: 2%;
     flex: 1;

@@ -1,8 +1,8 @@
 <nav class="nav">
 	<div id="nav-box">
 		<div id="nav1">
-	    	<%= link_to "My Projects", user_projects_path(current_user) %>
-	    	<%= link_to "All Projects", projects_path %>  
+	    	<span onClick="myTasks()">My Tasks</span>
+	    	<span onClick="allTasks()">All Tasks</span>
 	    </div>
 	 	<div id="nav2">
 	    	<%= link_to "Logout", logout_path %>
