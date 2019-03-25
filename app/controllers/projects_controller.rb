@@ -19,10 +19,8 @@ class ProjectsController < ApplicationController
     @projects = Project.finished
   end
 
-
   def new
     @project = Project.new
-    build_task
   end
 
   def create
@@ -37,16 +35,8 @@ class ProjectsController < ApplicationController
 
   def update
     @project = Project.find(params[:id])
-    if @project.update(project_params)
-        if (params[:commit]) == "Save"
-          redirect_to user_projects_path
-        elsif (params[:commit]) == "Add Task"
-          flash[:add] = "ADD"
-          redirect_to edit_user_project_path(current_user, @project)
-        end
-    else
-      render :edit
-    end
+    @project.update(project_params)
+    render json: @project, status: 201
   end
 
   def destroy
@@ -57,14 +47,6 @@ class ProjectsController < ApplicationController
   def correct_user?
     unless current_user == params[:user_id]
       redirect_to user_projects_path(current_user)
-    end
-  end
-
-  def build_task
-    if User.find_by_id(params[:user_id])
-      @project.tasks.build(user_id: params[:user_id])
-    else
-      @project.tasks.build(user_id: current_user.id)
     end
   end
 

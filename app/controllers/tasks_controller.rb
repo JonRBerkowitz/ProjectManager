@@ -32,14 +32,6 @@ class TasksController < ApplicationController
     render json: @task
   end
 
-  def single_user?
-    if flash[:edit_task] == "USER"
-      redirect_to user_projects_path(current_user)
-    else
-      redirect_to projects_path
-    end
-  end
-
   private
 
   def task_params
