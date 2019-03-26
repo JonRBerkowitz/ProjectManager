@@ -29,7 +29,7 @@
 	<div class="add-task-button add-task" id="{{id}}add-task" onClick="showTaskForm(this)">
 		+ Add task
 	</div>
-	<div class="add-task-button save-button" id="{{id}}save" onClick="saveTask()">
+	<div class="add-task-button save-button" id="{{id}}save" onClick="saveTask(this)">
 		Save Task
 	</div>
 	</div>
@@ -81,9 +81,9 @@
 </script>
 
 <script id="create-task-template", type="text/x-handlebars-template">
-	<div id="{{id}}new-task-form" class="new-task-form" onkeypress="addTask(this)">
+	<div id="{{id}}new-task-form" class="new-task-form">
 		<input type="text" placeholder="New Task" class="new-task" id="{{id}}task-name"></input>
-		<span class="new-task-date">Assignee: <%= select_tag "user", options_from_collection_for_select(@users, :id, :email) %></span>
+		<span class="new-task-date" id="{{id}}select-user">Assignee: <%= select_tag "user", options_from_collection_for_select(@users, :id, :email) %></span>
 		<span class="new-task-date">Due: <input type="date" class="new-date" id="{{id}}task-date" value="{{#today}}{{/today}}"></input></span>
 	</div>
 </script>
