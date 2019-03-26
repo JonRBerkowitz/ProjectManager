@@ -54,8 +54,8 @@
 				<h4>Due: {{#formatDate due_date}}{{/formatDate}}</h4>
 			</div>
 		</div>
-		<div class="marker {{id}}marker" data-id={{id}} data-project-id="{{project_id}}" onClick="editTask(this)"><%= image_tag("edit.png") %></div>
-		<div class="marker {{id}}marker" data-status="{{done}}" data-id={{id}} onClick="setTaskStatus(this)"><%= image_tag(("check.png"), :class => "check") %></div>
+		<div class="marker {{id}}marker" data-id="{{id}}" data-project-id="{{project_id}}" onClick="editTask(this)"><%= image_tag("edit.png") %></div>
+		<div class="marker {{id}}marker" data-status="{{done}}" data-id="{{id}}" onClick="setTaskStatus(this, {{done}})"><%= image_tag(("check.png"), :class => "check") %></div>
 		<div class="marker {{id}}marker" id="{{id}}delete" onClick="deleteTask(this)"><%= image_tag("x.png") %></div>
 	</div>
 

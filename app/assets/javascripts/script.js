@@ -218,10 +218,9 @@ function retrieveComments(obj) {
 		});
 	}
 
-	function setTaskStatus(obj) {
+	function setTaskStatus(obj, done) {
 		let id = obj.getAttribute('data-id');
-		let status = { done: !JSON.parse(obj.getAttribute('data-status')) }
-		console.log(status);
+		let status = { done: !done }
 		$.ajax({
 			type: "PATCH",
 			url: `/tasks/${id}`,
@@ -229,6 +228,8 @@ function retrieveComments(obj) {
 			success: function(data) {
 				console.log(data);
 				$(`#${id}task`).toggleClass('done');
+				obj.removeAttribute('onClick');
+				obj.setAttribute('onClick', `setTaskStatus(this, ${!done})`);
 			}
 		});
 
