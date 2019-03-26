@@ -56,7 +56,6 @@ function editTask(obj) {
 	let id = $(obj).data("id");
 	currentTask = id;
 	let projectId = $(obj).data("project-id");
-	currentData = 
 
 	$(`.current-task`).show();
 	$(`.add-task`).show();
@@ -67,6 +66,20 @@ function editTask(obj) {
 	$(`#${id}edit-task-container`).show();
 	$(`#${projectId}add-task`).hide();
 	$(`#${projectId}save`).show();
+}
+
+function hideEditTask(obj) {
+	let id = $(obj).data("id");
+	let projectId = $(obj).data("project-id");
+
+	$(`.add-task`).show();
+	$(`.save-button`).hide();
+
+	$(`#${id}task-container`).show();
+	$(`#${id}edit-task-container`).hide();
+	$(`#${projectId}add-task`).hide();
+	$(`#${projectId}save`).show();
+
 }
 
 function saveTask() {

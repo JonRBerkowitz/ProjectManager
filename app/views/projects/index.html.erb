@@ -67,7 +67,7 @@
 				<span class="edit-task-date date">Due:<input type="date" class="new-date" id="{{id}}new-task-date" value="{{#formatDate due_date}}{{/formatDate}}"></input></span>
 			</div>
 		</div>
-		<div class="marker cancel-marker" data-project-id="{{project-id}}" id="{{id}}cancel-marker" onClick=""><%= image_tag("x.png") %></div>
+		<div class="marker cancel-marker" data-project-id="{{project-id}}" data-id="{{id}}" id="{{id}}cancel-marker" onClick=" hideEditTask(this)"><%= image_tag("cancel.png") %></div>
 	</div>
 
 	
