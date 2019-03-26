@@ -106,11 +106,10 @@ function saveTask() {
 }
 
 function displayEditProjectName(obj) {
-	let id = $(obj).data("id")
+	let id = $(obj).data("id");
 
 	$(obj).hide();
-	console.log($(`#${id}delete`));
-	$(`#${id}delete.marker`).hide();
+	$(`#${id}delete-project`).hide();
 	$(`.project-name-input[data-id=${id}]`).show();
 }
 
@@ -133,7 +132,7 @@ function saveProjectName(obj) {
 			data: formData,
 			success: function(data) {
 				$(obj).hide();
-				$(`#${id}delete.marker`).show();
+				$(`#${id}delete-project`).show();
 				$(`h2[data-id=${id}]`).show();
 				$(`h2[data-id=${id}]`).text(input);
 			}

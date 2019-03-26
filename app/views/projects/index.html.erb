@@ -17,7 +17,7 @@
 	<div class="project-name">
 		<h2 onClick="displayEditProjectName(this)" data-id="{{id}}">{{name}}</h2>
 		<input class="project-name-input" data-id="{{id}}" value="{{name}}" autofocus onkeypress="editProjectName(this)" onfocusout="saveProjectName(this)" maxlength="20" placeholder="Enter Project Name"></input>
-		<div class="marker" id="{{id}}delete" onClick="deleteProject(this)"><%= image_tag("x.png") %></div>
+		<div class="marker" id="{{id}}delete-project" onClick="deleteProject(this)"><%= image_tag("x.png") %></div>
 	</div>
 
 	<div class="task-box" id="{{id}}task-box">
