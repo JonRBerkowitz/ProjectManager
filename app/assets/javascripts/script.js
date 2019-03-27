@@ -8,6 +8,7 @@ class Note {
 			dataType: "json",
 			url: `/users/${this.user_id}`,
 			success: (data) => {
+				console.log(data);
 				this.user = (data.email);
 			}
 		});
@@ -111,6 +112,7 @@ function saveTask(obj) {
 				$('.edit-task').hide();
 				$(`.save-button`).hide();
 				$(`.add-task`).show();
+				$('.new-task').val('');
 			}
 		});
 	} else {
@@ -138,6 +140,7 @@ function saveTask(obj) {
 				$('.edit-task').hide();
 				$(`.add-task`).show();
 				$(`.save-button`).hide();
+				$('.new-task').val('');
 			}
 		});
 	}
@@ -235,6 +238,7 @@ function deleteTask(obj) {
 		url: `/tasks/${id}`,
 		success: function() {
 			$(`#${id}task-container`).remove();
+			$(`#${id}box`).remove();
 		}
 	});
 }
