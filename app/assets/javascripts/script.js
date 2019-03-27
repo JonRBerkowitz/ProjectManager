@@ -104,6 +104,8 @@ function saveTask(obj) {
 				$(`#${currentTask}inner-task-container h3`).html(`${name}`);
 				$(`#${currentTask}inner-task-container p`).html(`Assignee: ${assigneeName}`);
 				$(`#${currentTask}inner-task-container h4`).html(`Due: ${date}`);
+				$(`.save-button`).hide();
+				$(`.add-task`).show();
 			}
 		});
 	} else {
