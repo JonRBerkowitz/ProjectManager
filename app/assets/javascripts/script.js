@@ -1,40 +1,38 @@
+var currentTask = 0;
+
 class Note {
-	constructor(content, user_id) {
+	constructor(content, user_id, task_id) {
 		this.content = content;
 		this.user_id = user_id;
+		this.task_id = task_id;
 	}
 	formatNote() {
 		$.ajax({
 			dataType: "json",
 			url: `/users/${this.user_id}`,
 			success: (data) => {
-				console.log(data);
-				this.user = (data.email);
+				let currentUser = (data.email);
+				console.log(data.email);
+				console.log(this);
+				$(`#${this.task_id}box div`).append(`<p class="comment"><span class="commenter">${currentUser}:</span> ${this.content}</p>`);
 			}
 		});
-		return `<p class="comment"><span class="commenter">${this.user}:</span> ${this.content}</p>`
 	}
 }
-
-var currentTask = 0;
-
 
 function addNote(obj) {
 	if (event.code == "Enter") {
 		let input = obj.value;
 		let id = obj.getAttribute('data-id');
 		let uid = $('#uid').val();
-		
 		let formData = { content: input, user_id: uid, task_id: id}
-		let newNote = new Note(input, uid);
-		console.log(newNote.formatNote());
-
+		let newNote = new Note(input, uid, id);
 		$.ajax({
 			type: "POST",
 			url: "/notes",
 			data: formData,
 			success: function(data) {
-			$(`#${id}box div`).append(newNote.formatNote());
+			newNote.formatNote();
 			$('.add-note').val('');
 			}
 		});
