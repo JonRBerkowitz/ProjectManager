@@ -84,6 +84,7 @@ function hideEditTask(obj) {
 }
 
 function saveTask(obj) {
+	let id = parseInt(obj.id);
 
 	if (currentTask) {
 
@@ -99,17 +100,20 @@ function saveTask(obj) {
 			url: `/tasks/${currentTask}`,
 			data: formData,
 			success: function(data) {
-				$(`#${currentTask}edit-task-container`).hide();
-				$(`#${currentTask}task-container`).show();
-				$(`#${currentTask}inner-task-container h3`).html(`${name}`);
-				$(`#${currentTask}inner-task-container p`).html(`Assignee: ${assigneeName}`);
-				$(`#${currentTask}inner-task-container h4`).html(`Due: ${date}`);
+				$(`#${currentTask}edit-task-container`).remove();
+				$(`#${currentTask}task-container`).remove();
+				var source = document.getElementById("new-task-template").innerHTML;
+				var template = Handlebars.compile(source);
+				var result = template(data);
+				$(`#${id}task-box`).append(result);
+				$('.note-box').hide();
+				$('.new-task-form').hide();
+				$('.edit-task').hide();
 				$(`.save-button`).hide();
 				$(`.add-task`).show();
 			}
 		});
 	} else {
-		let id = parseInt(obj.id);
 
 		let name = $(`#${id}task-name`).val() || "New Task";
 
