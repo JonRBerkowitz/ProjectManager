@@ -54,6 +54,8 @@ function deleteProject(obj) {
 function editTask(obj) {
 	let id = $(obj).data("id");
 	currentTask = id;
+	console.log(currentTask);
+
 	let projectId = $(obj).data("project-id");
 	
 	$('.new-task-form').hide();
@@ -84,9 +86,8 @@ function hideEditTask(obj) {
 
 function saveTask(obj) {
 	let id = parseInt(obj.id);
-	console.log(id);
-	if (currentTask) {
 
+	if (currentTask) {
 	let name = $(`.inner-edit-task-container[data-id=${currentTask}] .edit-task-name`).val() || "New Task";
 	let assignee = $(`.inner-edit-task-container[data-id=${currentTask}] .assignee select`).val();
 	let date = $(`.inner-edit-task-container[data-id=${currentTask}] .date input`).val();
@@ -99,6 +100,7 @@ function saveTask(obj) {
 			url: `/tasks/${currentTask}`,
 			data: formData,
 			success: function(data) {
+				console.log("patch");
 				$(`#${currentTask}edit-task-container`).remove();
 				$(`#${currentTask}task-container`).remove();
 				$(`#${currentTask}box`).remove();
@@ -130,10 +132,11 @@ function saveTask(obj) {
 			url: "/tasks",
 			data: formData,
 			success: function(data) {
-				var source = document.getElementById("new-task-template").innerHTML;
+				console.log("post");
+				var source = document.getElementById("task-wrapper").innerHTML;
 				var template = Handlebars.compile(source);
 				var result = template(data);
-
+				console.log(result);
 				$(`#${id}task-box`).append(result);
 				$('.note-box').hide();
 				$('.new-task-form').hide();
