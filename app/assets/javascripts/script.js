@@ -12,8 +12,6 @@ class Note {
 			url: `/users/${this.user_id}`,
 			success: (data) => {
 				let currentUser = (data.email);
-				console.log(data.email);
-				console.log(this);
 				$(`#${this.task_id}box div`).append(`<p class="comment"><span class="commenter">${currentUser}:</span> ${this.content}</p>`);
 			}
 		});
@@ -41,7 +39,6 @@ function addNote(obj) {
 
 function deleteProject(obj) {
 	let id = parseInt(obj.id);
-	console.log(id);
 	$.ajax({
 		type: "DELETE",
 		url: `/projects/${id}`,
@@ -54,7 +51,6 @@ function deleteProject(obj) {
 function editTask(obj) {
 	let id = $(obj).data("id");
 	currentTask = id;
-	console.log(currentTask);
 
 	let projectId = $(obj).data("project-id");
 	
@@ -100,14 +96,12 @@ function saveTask(obj) {
 			url: `/tasks/${currentTask}`,
 			data: formData,
 			success: function(data) {
-				console.log("patch");
 				$(`#${currentTask}edit-task-container`).remove();
 				$(`#${currentTask}task-container`).remove();
 				$(`#${currentTask}box`).remove();
 				var source = document.getElementById("new-task-template").innerHTML;
 				var template = Handlebars.compile(source);
 				var result = template(data);
-				console.log($(`#${currentTask}task-wrapper`));
 				$(`#${currentTask}task-wrapper`).append(result);
 				$('.note-box').hide();
 				$('.new-task-form').hide();
@@ -132,11 +126,9 @@ function saveTask(obj) {
 			url: "/tasks",
 			data: formData,
 			success: function(data) {
-				console.log("post");
 				var source = document.getElementById("task-wrapper").innerHTML;
 				var template = Handlebars.compile(source);
 				var result = template(data);
-				console.log(result);
 				$(`#${id}task-box`).append(result);
 				$('.note-box').hide();
 				$('.new-task-form').hide();
@@ -235,7 +227,6 @@ function addProject() {
 
 function deleteTask(obj) {
 	let id = parseInt(obj.id);
-	console.log(id);
 	$.ajax({
 		type: "DELETE",
 		url: `/tasks/${id}`,
@@ -254,7 +245,6 @@ function setTaskStatus(obj, done) {
 		url: `/tasks/${id}`,
 		data: status,
 		success: function(data) {
-			console.log(data);
 			$(`#${id}task`).toggleClass('done');
 			obj.removeAttribute('onClick');
 			obj.setAttribute('onClick', `setTaskStatus(this, ${!done})`);
