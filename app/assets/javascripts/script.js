@@ -84,7 +84,7 @@ function hideEditTask(obj) {
 
 function saveTask(obj) {
 	let id = parseInt(obj.id);
-
+	console.log(id);
 	if (currentTask) {
 
 	let name = $(`.inner-edit-task-container[data-id=${currentTask}] .edit-task-name`).val() || "New Task";
@@ -101,10 +101,12 @@ function saveTask(obj) {
 			success: function(data) {
 				$(`#${currentTask}edit-task-container`).remove();
 				$(`#${currentTask}task-container`).remove();
+				$(`#${currentTask}box`).remove();
 				var source = document.getElementById("new-task-template").innerHTML;
 				var template = Handlebars.compile(source);
 				var result = template(data);
-				$(`#${id}task-box`).append(result);
+				console.log($(`#${currentTask}task-wrapper`));
+				$(`#${currentTask}task-wrapper`).append(result);
 				$('.note-box').hide();
 				$('.new-task-form').hide();
 				$('.edit-task').hide();

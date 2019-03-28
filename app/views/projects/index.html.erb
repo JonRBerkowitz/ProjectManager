@@ -22,7 +22,7 @@
 
 	<div class="task-box" id="{{id}}task-box">
 		{{#each tasks}}
-			{{> taskPartial}}
+			{{> taskWrapper}}
 		{{/each}}					
 	</div>
 	{{> createTaskPartial}}
@@ -45,7 +45,14 @@
 	<p class="comment"><span class="commenter">{{user.email}}:</span> {{content}}</p>
 </script>
 
+<script id="task-wrapper">
+<div id="{{id}}task-wrapper">
+	{{> taskPartial}}
+</div>
+</script>
+
 <script id="new-task-template", type="text/x-handlebars-template">
+
 	<div class="task current-task {{#if_eq user_id <%=@user.id%> }}{{/if_eq}}" id="{{id}}task-container"> 
 		<div class="task-name {{#if done}}done{{/if}}" id="{{id}}task" onClick="retrieveComments(this)">
 			<div id="{{id}}inner-task-container">
@@ -59,6 +66,7 @@
 		<div class="marker {{id}}marker" id="{{id}}delete" onClick="deleteTask(this)"><%= image_tag("x.png") %></div>
 	</div>
 
+
 	<div class="task edit-task" id="{{id}}edit-task-container" data-id={{id}}>
 		<div class="task-name {{#if done}}done{{/if}}" id="{{id}}task"">
 			<div id="{{id}}inner-edit-task-container" class="inner-edit-task-container" data-id="{{id}}">
@@ -70,6 +78,7 @@
 		<div class="marker cancel-marker" data-project-id="{{project-id}}" data-id="{{id}}" id="{{id}}cancel-marker" onClick=" hideEditTask(this)"><%= image_tag("cancel.png") %></div>
 	</div>
 
+
 	<div class="note-box" id="{{id}}box">
 		<div>
 			{{#each notes}}
@@ -77,7 +86,8 @@
 			{{/each}}
 		</div>
 		<input class="add-note" data-id="{{id}}" type="text" placeholder="+ Add Note" onkeypress="addNote(this)"></input>
-	</div>	
+	</div>
+
 </script>
 
 <script id="create-task-template", type="text/x-handlebars-template">
@@ -90,7 +100,9 @@
 
 <script>
 
+	Handlebars.registerPartial('taskWrapper',  document.getElementById("task-wrapper").innerHTML)
 	Handlebars.registerPartial('taskPartial',  document.getElementById("new-task-template").innerHTML)
+	Handlebars.registerPartial('notePartial',  document.getElementById("new-note-template").innerHTML)
 	Handlebars.registerPartial('createTaskPartial',  document.getElementById("create-task-template").innerHTML)
 	Handlebars.registerPartial('createItemPartial',  document.getElementById("new-item-template").innerHTML)
 
