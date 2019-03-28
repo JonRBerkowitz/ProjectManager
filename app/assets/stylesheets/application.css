@@ -79,6 +79,11 @@
     text-decoration: underline;
   }
 
+  .flash {
+    font-size: .7em;
+    color: red;
+  }
+
   #create-project {
     color: #fff;
     background-color: #5C6672;

@@ -6,6 +6,7 @@
 				<%= text_field_tag 'email', "", class:'login-input' %><br>
 				<%= label_tag 'password' %><br>
 				<%= password_field_tag 'password', "", class:'login-input' %><br>
+				<span class="flash"><%= flash[:message] %></span>
 				<%= submit_tag 'Sign Up', class: "login_button" %>
 			    
 			    <br>
@@ -15,6 +16,5 @@
 			<%= link_to('Already have an account? Log in!', login_path, id: "signup_link") %>
 		</div>
 	</div>
-				<p><%= flash[:message] %></p>
 
 </div>
