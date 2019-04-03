@@ -28,13 +28,18 @@ After signing up or logging in, you should see this screen.
 ![](/app/assets/images/mainScreen.jpg)
 
 Here you can:
+
 • Create or delete a project
+
 • Edit a project's name by clicking on it
 
 • Use the buttons next to a task to edit, check off, or delete it
+
 • Create a new task
+
 • Click a task to expand it
-  • Add notes to an expanded task
+
+• Add notes to an expanded task
 
 • Filter tasks by the ones assigned to you, or all of them
 
