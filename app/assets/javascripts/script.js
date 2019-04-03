@@ -49,6 +49,7 @@ function deleteProject(obj) {
 }
 
 function editTask(obj) {
+	let user_id = $(obj).data("user");
 	let id = $(obj).data("id");
 	currentTask = id;
 
@@ -59,6 +60,7 @@ function editTask(obj) {
 	$(`.add-task`).show();
 	$(`.edit-task`).hide();
 	$(`.save-button`).hide();
+	$(`#${id}assignee select`).val(user_id);
 
 	$(`#${id}task-container`).hide();
 	$(`#${id}edit-task-container`).show();
@@ -96,6 +98,7 @@ function saveTask(obj) {
 			url: `/tasks/${currentTask}`,
 			data: formData,
 			success: function(data) {
+				$(`#${id}edit-marker`).attr('data-user', assignee);
 				$(`#${currentTask}edit-task-container`).remove();
 				$(`#${currentTask}task-container`).remove();
 				$(`#${currentTask}box`).remove();

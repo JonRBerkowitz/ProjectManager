@@ -61,7 +61,7 @@
 				<h4>Due: {{#formatDate due_date}}{{/formatDate}}</h4>
 			</div>
 		</div>
-		<div class="marker {{id}}marker" data-id="{{id}}" data-project-id="{{project_id}}" onClick="editTask(this)"><img src="https://i.ibb.co/VBmDWK6/edit.png" alt="edit" border="0"></div>
+		<div class="marker {{id}}marker" id="{{id}}edit-marker" data-id="{{id}}" data-user="{{user_id}}" data-project-id="{{project_id}}" onClick="editTask(this)"><img src="https://i.ibb.co/VBmDWK6/edit.png" alt="edit" border="0"></div>
 		<div class="marker {{id}}marker" data-status="{{done}}" data-id="{{id}}" onClick="setTaskStatus(this, {{done}})"><img class="check" src="https://i.ibb.co/3zpSPTC/check.png" alt="check" border="0"></div>
 		<div class="marker {{id}}marker" id="{{id}}delete" onClick="deleteTask(this)"><img src="https://i.ibb.co/gMYjhYw/x.png" alt="x" border="0"></div>
 	</div>
@@ -71,7 +71,7 @@
 		<div class="task-name {{#if done}}done{{/if}}" id="{{id}}task"">
 			<div id="{{id}}inner-edit-task-container" class="inner-edit-task-container" data-id="{{id}}">
 				<input type="text" autofocus placeholder="Edit Task" class="edit-task-name" value="{{name}}" id="{{id}}edit-task-name"></input>
-				<span class="edit-task-date assignee">Assignee: <%= select_tag "user", options_from_collection_for_select(@users, :id, :email) %></span><br>
+				<span class="edit-task-date assignee" id="{{id}}assignee">Assignee: <%= select_tag "user", options_from_collection_for_select(@users, :id, :email) %></span><br>
 				<span class="edit-task-date date">Due:<input type="date" class="new-date" id="{{id}}new-task-date" value="{{#formatDate due_date}}{{/formatDate}}"></input></span>
 			</div>
 		</div>

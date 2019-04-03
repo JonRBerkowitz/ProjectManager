@@ -6,7 +6,8 @@ before_action :disable_nav, only:[:new, :create]
   end
 
   def index
-    redirect_to signup_path
+    @users = User.all
+    render json: @users, status: 200
   end
 
   def create
